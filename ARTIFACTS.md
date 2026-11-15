@@ -1,3 +1,13 @@
+# Final deployed model handoff
+
+The current release requires30assets:28base assets plus the supplied YOLO checkpoint and proposal selector. [config/deployed-assets.json](config/deployed-assets.json) records every filename, size, SHA256, source/revision, role, license and restoration path. Qwen, FloorCAD and other disabled models are not in this inventory.
+
+An allowlisted, verified OCR-only package is ready outsideGit:
+`../floorhawk-modal/handoff/event-readiness/floorhawk-redistributable-ocr.zip`.
+It contains3unchanged Apache-2.0 PP-OCR ONNX models, the full inventory, RESTORE.md, license and notices. It is **not** the complete runtime bundle. Restricted or unclear CubiCasa/RT-DETR/custom weights and calibrations are excluded; restore them from their recorded upstream sources or authenticated Modal paths below. Custom detector author attribution remains pending. No datasets, drawings, references, predictions, credentials, caches, venvs or transcripts enter the ZIP.
+
+Reproduce with `.venv/bin/python scripts/package_deployed_assets.py` after restoring exact local assets; the command refuses to overwrite an existing package. It checks free disk, source hashes, archive allowlist, CRC and extracted model hashes. Package metadata/checksum is beside the ZIP in `package-verification.json`. No authorized Google Drive upload tool was available, so no upload/share URL is claimed. Upload this package manually if desired; review included license/notices.
+
 # External artifacts
 
 ## Overnight event assets

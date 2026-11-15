@@ -1,5 +1,7 @@
 # FloorHAWK status — 2026-11-15T07:29:04.583972+02:00
 
+Latest event-readiness pass: public15USDallocation/7.50USDreserved (~30admissions); real Gemini+visible evidence verified on all3roles; concurrent public jobs, idempotency, ownership and isolated peers passed. Publicoperational9cd9301; models/frontend/inferenceunchanged. [Current verification and limits](docs/EVENT_READINESS.md). Older accounting below is historical.
+
 Academic Menaces · STOA — Make Blueprints Talk · Junction2026.
 
 Deployed8fce908, frozen inference5827eab. Three protected URLs and actual verified scope: [morning handoff](MORNING_HANDOFF.md). Private submission repository https://github.com/HariPrasanth-SM/floorhawk ; canonical source remainsproofplan/. Presenter/judges intentionally warm/billable, publicmin0/max1. No supplied data, weights, original predictions, corrected splits, secrets or budget history changed.

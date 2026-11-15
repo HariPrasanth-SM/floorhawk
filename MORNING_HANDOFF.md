@@ -1,5 +1,7 @@
 # Morning handoff — FloorHAWK
 
+Latest event-readiness pass: public15USDallocation/7.50USDreserved (~30admissions); real Gemini+visible evidence verified on all3roles; concurrent public jobs, idempotency, ownership and isolated peers passed. Publicoperational9cd9301; models/frontend/inferenceunchanged. [Current verification and limits](docs/EVENT_READINESS.md). Older accounting below is historical.
+
 Academic Menaces · STOA — Make Blueprints Talk · Junction2026.
 
 Campaign checkpoint 2026-11-15T07:29:04.583972+02:00. Optimization froze05:45:00.918Helsinki. Deployment and private submission were verified before07:00. Frozen final LocalCPU inference has now stopped; no final-reference tuning or provider calls. Intended event deployments remain available.

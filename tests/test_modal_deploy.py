@@ -12,6 +12,17 @@ class Store:
  def pop(self,k,default=None):
   with self.lock:return self.rows.pop(k,default)
 class ModalTests(unittest.TestCase):
+ def test_transient_lock_contention_waits_boundedly(self):
+  import time
+  s=Store();s.put('admission-lock-v1','test-owned');thread=threading.Thread(target=lambda:(time.sleep(.05),s.pop('admission-lock-v1',None)));thread.start();ident,new=Controls(s,'').reserve('owner','request',False,'release','local');thread.join();self.assertTrue(new);self.assertTrue(ident)
+ def test_event_allocation_preserves_spend_and_limits(self):
+  s=Store();state=s.get('admission-state-v1');state.update(compute_limit_usd=15,compute_reservation_usd=7,events=[],jobs={},idempotency={});s.put('admission-state-v1',state);c=Controls(s,'');ident,_=c.reserve('visitor','new',False,'release','local');self.assertEqual(c.allowance()['compute_reserved_usd'],7.25);self.assertEqual(c.allowance()['estimated_queries_remaining'],31);self.assertEqual(c.allowance()['questions_remaining'],4)
+  with self.assertRaises(Denied):c.reserve('visitor','another',False,'release','local')
+  self.assertEqual(c.reserve('visitor','new',False,'release','local'),(ident,False))
+ def test_invalid_event_allocation_fails_closed(self):
+  for value in [float('nan'),float('inf'),-1,True]:
+   s=Store();state=s.get('admission-state-v1');state['compute_limit_usd']=value;s.put('admission-state-v1',state)
+   with self.assertRaises(Denied):Controls(s,'').reserve('v','i',False,'r','local')
  def test_event_resources_have_explicit_hard_limits(self):
   import ast
   root=Path(__file__).resolve().parents[1];tree=ast.parse((root/'deploy/modal/event.py').read_text());found=[]

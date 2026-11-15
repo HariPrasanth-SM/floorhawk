@@ -1,3 +1,7 @@
+# Current event-readiness update
+
+Public allocation is15USD with7.50USDreserved (~30admissions after checks). Public operational snapshot: `releases/event-readiness-lock`, source9cd9301; presenter/judges remain8fce908. Models/frontend frozen. [Actual verification](EVENT_READINESS.md). Public rollback should use `releases/event-readiness` (3d436a3), which supports the durable allocation; older hard-coded7USD snapshots may refuse new admissions.
+
 # FloorHAWK event operations
 
 Run commands from canonical `proofplan/`. The selected event snapshot is `../floorhawk-modal/releases/overnight-resource-bounds`, source `5827eab5e423bae3eb7413a2c773183afa2f60f0`; promotion status and actually tested URLs belong in the morning handoff. Until promotion, the existing presenter/public remain unchanged.
@@ -40,7 +44,7 @@ Access files live outside source under `../floorhawk-modal/.secrets/`: `presente
 .venv/bin/modal app stop floorhawk-demo --yes
 ```
 
-Presenter/judges warm T4 containers remain billable until turned off/stopped. Public starts at min0/max1, with a cold-start penalty. API containers are bounded; twenty idle/browser sessions do not imply twenty concurrent GPU jobs. Public admission retains5questions/300s per code,2distinct source uploads charged at accepted submission/300s,1active per visitor and10waiting jobs. Its existing7USD conservative cumulative compute-reservation ceiling is preserved and is not a Modal hard-dollar cap. Presenter/judges queue capacity is3 (one executing, two waiting).
+Presenter/judges warm T4 containers remain billable until turned off/stopped. Public starts at min0/max1, with a cold-start penalty. API containers are bounded; twenty idle/browser sessions do not imply twenty concurrent GPU jobs. Public admission retains5questions/300s per code,2distinct source uploads charged at accepted submission/300s,1active per visitor and10waiting jobs. Its current15USD conservative cumulative compute-reservation ceiling preserves all prior history and is not a Modal hard-dollar cap. Presenter/judges queue capacity is3 (one executing, two waiting).
 
 ## Safe admission-lock recovery
 

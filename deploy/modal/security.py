@@ -2,7 +2,7 @@
 The guard has NO automatic lease expiry: an interrupted lock requires operator
 verification and manual recovery, never an unsafe timeout-based unlock.
 """
-import contextlib,time,hashlib,secrets
+import contextlib,time,hashlib,secrets,math
 class Denied(Exception):
  def __init__(self,message,retry=1):super().__init__(message);self.retry=retry
 class Controls:
@@ -10,7 +10,10 @@ class Controls:
  @contextlib.contextmanager
  def transaction(self):
   key='admission-lock-v1';owner=secrets.token_hex(16)
-  if not self.store.put(key,owner,skip_if_exists=True):raise Denied('Admission busy; retry shortly',2)
+  until=time.monotonic()+1.5
+  while not self.store.put(key,owner,skip_if_exists=True):
+   if time.monotonic()>=until:raise Denied('Admission busy; retry shortly',2)
+   time.sleep(.04)
   try:
    state=self.store.get('admission-state-v1',{'events':[],'jobs':{},'idempotency':{},'live':False,'gemini':False})
    yield state
@@ -22,7 +25,9 @@ class Controls:
   with self.transaction()as s:
    old=s['idempotency'].get(session+':'+idem)
    if old and now-old['time']<(5 if idem.startswith('auto:')else 300):return old['id'],False
-   if s.get('compute_reservation_usd',0)+.25>7:raise Denied('Conservative compute reservation limit reached',60)
+   cap=s.get('compute_limit_usd',7)
+   if not isinstance(cap,(int,float))or isinstance(cap,bool)or not math.isfinite(cap)or cap<0:raise Denied('Invalid compute allocation; admission stopped',60)
+   if s.get('compute_reservation_usd',0)+.25>cap:raise Denied('Conservative compute reservation limit reached',60)
    if not s['live']and session not in s.get('verification_sessions',[]):raise Denied('Live inference disabled',60)
    active=[j for j in s['jobs'].values()if j['status']in ['reserved','queued','running']]
    if any(j['owner']==session for j in active):raise Denied('One active request per visitor; poll your current job',3)
@@ -58,4 +63,5 @@ class Controls:
    if ident in s['jobs']:s['jobs'][ident]['status']=status
  def allowance(self):
   s=self.store.get('admission-state-v1',{});now=time.time();e=[e for e in s.get('events',[])if now-e['time']<300]
-  return {'questions_remaining':max(0,5-len(e)),'uploads_remaining':max(0,2-sum(x['upload']for x in e)),'retry_seconds':max(0,int(300-(now-e[0]['time'])))if e else 0,'live':s.get('live',False),'gemini':bool(s.get('gemini',False))}
+  cap=s.get('compute_limit_usd',7);spent=s.get('compute_reservation_usd',0)
+  return {'compute_limit_usd':cap,'compute_reserved_usd':spent,'estimated_queries_remaining':max(0,int((cap-spent+1e-9)/.25)),'questions_remaining':max(0,5-len(e)),'uploads_remaining':max(0,2-sum(x['upload']for x in e)),'retry_seconds':max(0,int(300-(now-e[0]['time'])))if e else 0,'live':s.get('live',False),'gemini':bool(s.get('gemini',False))}

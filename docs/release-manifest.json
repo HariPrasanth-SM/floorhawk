@@ -68,13 +68,13 @@
         "browser_report_sha256": "797a2780ceff56237df43db7e9d871bfe0c1c70e1e19739aca958799de95191a",
         "browser_seconds": 32.98561408200112,
         "provider_attempts": 0
-      }
+      },
+      "operational_source_commit": "9cd9301438cff1207aa42dca3762a8f5cccfe921"
     }
   },
   "limits": [
     "Curated checks are not held-out accuracy.",
     "No successful new semantic cloud review is claimed from these provider-free browser checks; preflight/provider variants were verified earlier.",
-    "Public conservative7USD cumulative compute reservation guard retained, now5.75USD: five additional0.25USD admissions available. This is not actual Modal billing.",
     "Public20session check used authenticated browsing/gallery GETs, not20GPU jobs.",
     "Actual provider billing and Modal invoice unavailable; reservations/token subtotal differ.",
     "Full queue exhaustion and deliberate worker-crash recovery were not injected in serving apps; lock recovery remains fail-closed manual."
@@ -93,5 +93,9 @@
       "max_containers_public": 2,
       "max_containers_other": 1
     }
-  }
+  },
+  "public_event_allocation_usd": 15,
+  "public_reservations_usd": 7.5,
+  "public_estimated_admissions_remaining": 30,
+  "event_readiness_report": "EVENT_READINESS.md"
 }

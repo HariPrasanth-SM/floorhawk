@@ -2,6 +2,10 @@
 import sys,json,time,uuid
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT))
+if '--public-event-limit' in sys.argv:
+ from event_allocation import main
+ main()
+ raise SystemExit
 from v2.budget import Ledger
 import modal
 operation='modal-ui-release-20261114-prefund';ledger=Ledger()

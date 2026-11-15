@@ -1,5 +1,9 @@
 """Normal visitor candidate smoke. No verification-session admission bypass."""
 import sys,os,time,json,re,io
+if '--readiness' in sys.argv:
+ from event_readiness import main
+ main()
+ raise SystemExit
 if '--event' in sys.argv:
  from event_browser import main
  main()

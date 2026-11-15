@@ -1,5 +1,7 @@
 # FloorHAWK current analytics — frozen release5827eab
 
+Latest event-readiness pass: public15USDallocation/7.50USDreserved (~30admissions); real Gemini+visible evidence verified on all3roles; concurrent public jobs, idempotency, ownership and isolated peers passed. Publicoperational9cd9301; models/frontend/inferenceunchanged. [Current verification and limits](docs/EVENT_READINESS.md). Older accounting below is historical.
+
 Current deployment8fce908/frozeninference5827eab. Frozen finalLocalCPU stopped:5602/6876recorded; correctall4214/6876(61.29%), recordedsubset4214/5602(75.22%). Partial/overlap caveats and full metrics: [final evaluation](docs/FINAL_EVALUATION.md). No final-result tuning.
 
 Academic Menaces · STOA — Make Blueprints Talk · Junction2026.

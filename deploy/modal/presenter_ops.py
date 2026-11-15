@@ -5,11 +5,14 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[2]))
 import modal
 EVENT_APPS=['floorhawk-presenter','floorhawk-judges','floorhawk-demo','floorhawk-overnight-candidate']
 APPS=EVENT_APPS+['floorhawk-campaign-extraction','floorhawk-final-evaluation']
-p=argparse.ArgumentParser();p.add_argument('action',choices=['warm','ready','status','off','stop']);p.add_argument('--app',choices=APPS,default='floorhawk-presenter');p.add_argument('--budget',action='store_true');p.add_argument('--admission',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('action',choices=['warm','ready','status','off','stop']);p.add_argument('--app',choices=APPS,default='floorhawk-presenter');p.add_argument('--budget',action='store_true');p.add_argument('--admission',action='store_true');p.add_argument('--billing',action='store_true');a=p.parse_args()
 if a.action=='stop':raise SystemExit(subprocess.run([str(Path(sys.executable).parent/'modal'),'app','stop',a.app,'--yes']).returncode)
 if a.app not in EVENT_APPS and a.action!='status':raise SystemExit('Campaign apps support read-only status or explicit stop; no accidental warming')
 kind={'floorhawk-campaign-extraction':('Extractor','extract'),'floorhawk-final-evaluation':('FinalWorker','evaluate')}.get(a.app,('Resident','ready'));m=modal.Cls.from_name(a.app,kind[0])()
 if a.action=='status':
+ if a.billing:
+  b=modal.Workspace.from_context().billing.summary(cycle='this month')
+  print(json.dumps({'billing':{'metered_cost_usd':str(b.metered_cost),'billed_cost_usd':str(b.billed_cost),'adjustments':{k:str(v)for k,v in b.adjustments.items()},'breakdown':{k:str(v)for k,v in b.metered_cost_breakdown.items()},'note':'Workspace month-to-date, may lag; not remaining promotional credit'}},indent=2))
  try:print(getattr(m,kind[1]).get_current_stats())
  except Exception as e:print('Resident stats unavailable:',type(e).__name__,'(legacy or stopped deployment)')
  if a.admission and a.app in EVENT_APPS:
