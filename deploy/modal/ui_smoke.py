@@ -1,5 +1,9 @@
 """Normal visitor candidate smoke. No verification-session admission bypass."""
 import sys,os,time,json,re,io
+if '--anonymous' in sys.argv:
+ from anonymous_browser import main
+ main()
+ raise SystemExit
 if '--capacity' in sys.argv:
  from capacity_browser import main
  main()

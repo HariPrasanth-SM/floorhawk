@@ -8,7 +8,7 @@
 
 [Watch the FloorHAWK demo on YouTube](https://www.youtube.com/watch?v=s4ZveDg5kao)
 
-**[Open the protected live demo](https://sm-hariprasanth--web.us-east.modal.run)** · Judges receive access privately from the team. No access code or API key is included in this repository. Presenter links and controls are in the [operator guide](docs/EVENT_OPERATIONS.md).
+**[Open the public live demo](https://sm-hariprasanth--web.us-east.modal.run)** — no access code is required. Each visitor receives an isolated anonymous session. Judges and presenter endpoints remain protected; their access is provided privately by the team. No access code or API key is included in this repository. See the [operator guide](docs/EVENT_OPERATIONS.md).
 
 Construction drawings scatter useful information across small symbols, room labels, schedules and building-model properties. FloorHAWK lets reviewers ask questions about PNG/JPEG drawings, PDFs and IFC models, then inspect the source evidence behind the answer. It combines existing specialist models and structured extraction with selective Gemini review, presenting one result while retaining separate local and review records for analysis.
 
@@ -77,7 +77,7 @@ The team used Codex to implement model adapters, source-coordinate evidence, eva
 
 ## Quick start
 
-For the event, open the protected demo above using the access provided privately by the team. For local development, restore the external assets and authorized datasets described in [ARTIFACTS.md](ARTIFACTS.md), then run from the repository directory:
+For the event, open the public demo above directly. Judges and presenter access remains protected by private codes. For local development, restore the external assets and authorized datasets described in [ARTIFACTS.md](ARTIFACTS.md), then run from the repository directory:
 
 ```bash
 bash scripts/restore_environment.sh

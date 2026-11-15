@@ -5,6 +5,13 @@ from http.server import ThreadingHTTPServer
 from deploy.modal.security import Controls,Denied
 LOGIN='''<!doctype html><title>FloorHAWK · access</title><style>body{font:16px system-ui;max-width:500px;margin:15vh auto}input,button{font:inherit;padding:10px}</style><h1>FloorHAWK</h1><p>Private live drawing review. Enter your event access code.</p><form method="post" action="/access"><input name="code" type="password" autocomplete="off" required><button>Explore</button></form>'''
 
+def issue_visitor_cookie(response,key):
+ # Fresh random identity per browser; never a shared anonymous account.
+ sid=secrets.token_hex(24);token=sid+'.'+hmac.new(key,sid.encode(),'sha256').hexdigest()
+ response.set_cookie('floorhawk-session',token,httponly=True,secure=True,samesite='strict',max_age=8*3600)
+ response.headers['Cache-Control']='private, no-store';response.headers['Vary']='Cookie'
+ return response
+
 def create_gateway(store,jobs_volume,dispatch,release):
  from fastapi import FastAPI,Request
  from fastapi.responses import Response,HTMLResponse,JSONResponse,RedirectResponse
@@ -53,15 +60,19 @@ def create_gateway(store,jobs_volume,dispatch,release):
   if len(raw)>2048:return JSONResponse({'error':'Invalid code'},403)
   code=parse_qs(raw.decode()).get('code',[''])[0]
   if not controls.authenticate(code):return JSONResponse({'error':'Invalid access code'},403)
-  sid=secrets.token_hex(24);token=sid+'.'+hmac.new(key,sid.encode(),'sha256').hexdigest();response=RedirectResponse('/',status_code=303);response.set_cookie('floorhawk-session',token,httponly=True,secure=True,samesite='strict',max_age=8*3600);return response
+  return issue_visitor_cookie(RedirectResponse('/',status_code=303),key)
  @web.api_route('/{path:path}',methods=['GET','POST'])
  async def proxy(path:str,request:Request):
   sid=session(request)
-  if not sid:return HTMLResponse(LOGIN)if request.method=='GET'and path==''else JSONResponse({'error':'Event access code required'},401)
+  if not sid:
+   # Only the server-selected public role bootstraps anonymous sessions.
+   if os.environ.get('FLOORHAWK_EVENT_ROLE')=='public' and request.method=='GET'and path=='':
+    return issue_visitor_cookie(forward('/'),key)
+   return HTMLResponse(LOGIN)if request.method=='GET'and path==''else JSONResponse({'error':'Visitor session required'if os.environ.get('FLOORHAWK_EVENT_ROLE')=='public'else'Event access code required'},401)
   route='/'+path+('?' +request.url.query if request.url.query else'')
   try:
    if path.startswith('api/submissions/'):
-    key=path.rsplit('/',1)[1];st=store.get('admission-state-v1',{});item=st.get('idempotency',{}).get(sid+':'+key);ident=item.get('id')if item else None;row=st.get('jobs',{}).get(ident,{})
+    submission_key=path.rsplit('/',1)[1];st=store.get('admission-state-v1',{});item=st.get('idempotency',{}).get(sid+':'+submission_key);ident=item.get('id')if item else None;row=st.get('jobs',{}).get(ident,{})
     return JSONResponse({'id':ident if row.get('status')not in [None,'reserved']else None})
    if path=='api/gallery':
     from deploy.modal.gallery import catalog

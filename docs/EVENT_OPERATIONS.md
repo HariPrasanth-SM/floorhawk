@@ -1,6 +1,6 @@
 # FloorHAWK event operations
 
-Current release: d1ae1e2 (`../floorhawk-modal/releases/event-capacity-path`). Frozen inference base5827eab; frontend/model/configuration hashes are unchanged. All three working URLs are retained. [Measured verification](EVENT_CAPACITY.md).
+Public release: 3d262e0 (`../floorhawk-modal/releases/public-anonymous-fixed`), with code-free unique anonymous sessions. Judges/presenter remain protected on d1ae1e2 (`../floorhawk-modal/releases/event-capacity-path`). [Fresh-browser access verification](PUBLIC_ACCESS.md). Frozen inference base5827eab; frontend/model/configuration hashes are unchanged. All three working URLs are retained. [Measured verification](EVENT_CAPACITY.md).
 
 |Role|URL|Warm minimum / maximum T4 workers|Total admitted jobs|
 |---|---|---:|---:|
@@ -14,7 +14,7 @@ One inference input perGPUworker; models remain resident. GPUworkers request/lim
 
 `config/event-serving.json`, activated with `FLOORHAWK_EVENT_CAPACITY=1` in cloud images, disables application dollar/cumulative-query/prepaid-permit gates. Old public compute reservations and the historical80USDprovider allocation are retained for reporting, not enforced event spending limits. The unchanged frontend's legacy budget fields can show the historical allocation; API metadata identifies it as historical with `application_cap_enforced=false`. Requests/tokens and per-job worker-time estimates still append to the same durable authority. Reservations are never labelled actual billing. No provider quota or billing setting was changed. Server-side role live/Gemini and shared provider stop switches remain. No automatic shutdown is scheduled.
 
-Access files stay outsideGit under `../floorhawk-modal/.secrets/{presenter-access-code,judges-access-code,event-access-code}`. Never print or commit contents.
+Judges and presenter access files stay outsideGit; the legacy public event-access-code is retained but no longer required. API clients receive their public session by visiting/. Access files stay outsideGit under `../floorhawk-modal/.secrets/{presenter-access-code,judges-access-code,event-access-code}`. Never print or commit contents.
 
 ## Status, warming and readiness
 

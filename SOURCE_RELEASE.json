@@ -1,5 +1,5 @@
 {
-  "source_commit": "b7730dd82884529df47fb296a57567d97360cd7f",
+  "source_commit": "689aac0ae083fd2d5b033195797c7e7cd2a6109d",
   "repository": "private FloorHAWK submission",
   "files": {
     ".env.example": {
@@ -27,16 +27,16 @@
       "sha256": "f7fe0633ae1e8dfb46ff0abbe171aed89fbff8214edff2d5eccd62ab629f456e"
     },
     "README.md": {
-      "bytes": 9418,
-      "sha256": "96ad15a7c157175360b3e825eff374c7f0bfc0b976bf1c786e6a87840bd5dd3b"
+      "bytes": 9537,
+      "sha256": "28384af181e0e3886e55bd974f5ec2b4b8236b4da732836b7ee8def80e461a6e"
     },
     "SOLUTION_ANALYTICS.md": {
       "bytes": 6736,
       "sha256": "e856438651c1a6775870c1496fcf6ae4373e841a21e8e863d1fc27c4135f04ce"
     },
     "STATUS.md": {
-      "bytes": 807,
-      "sha256": "50c4ac2322f77e2f0c4b7e486eff6c95bc2b22fb61f9752044115417e633f10d"
+      "bytes": 1134,
+      "sha256": "632b258419d1c8cd72088cc0174a1c2af7c9e9e169d8d80962c28fd51f716ac2"
     },
     "app.py": {
       "bytes": 144,
@@ -270,6 +270,10 @@
       "bytes": 5830,
       "sha256": "ee99fec4d0228f9827ddafe59496a5d28b6ba268286075a5395cd1985dc327b2"
     },
+    "deploy/modal/anonymous_browser.py": {
+      "bytes": 3123,
+      "sha256": "9392533c5692c2b4213e43824c0fb2ee84adf6fb549138dec4cb476ce9b0562a"
+    },
     "deploy/modal/app.py": {
       "bytes": 3617,
       "sha256": "a6ffa58f8daa816f1de737fc459748abc4a3853c6f1fbe3fc9b8cdedd921d764"
@@ -343,8 +347,8 @@
       "sha256": "86ca908e01affeef3fb4f9a5e6fa9af622a0f38c7336a2229730165860615b96"
     },
     "deploy/modal/gateway.py": {
-      "bytes": 11550,
-      "sha256": "9baa7283b16c1dcc87132fef76e195424b4afba0fd8384622ce8275cd93ab3e7"
+      "bytes": 12103,
+      "sha256": "d2503b7dbab76616d21ba8f04c75fc998e2db87e8bbf272737ece7470aecc436"
     },
     "deploy/modal/licenses/LICENSE.CubiCasa": {
       "bytes": 253,
@@ -407,8 +411,8 @@
       "sha256": "9c9aa4c0c8f39d92ca5fffa32504585bfbd954694d16323999d7eb3cfe63606b"
     },
     "deploy/modal/ui_smoke.py": {
-      "bytes": 5399,
-      "sha256": "731c8ce16621c37d574e448bf56e461d0fce72f63d5ad69f2c9899014ec2901a"
+      "bytes": 5491,
+      "sha256": "ac82c8e8b4b8d6687c517c185ad0f1a9844845a22a14f102f78a92f47669bacc"
     },
     "detector.py": {
       "bytes": 9155,
@@ -427,8 +431,8 @@
       "sha256": "6c3f31a349153019246a8de19bb5743b2ec422f3fc3d5f2bdfc183639a71279d"
     },
     "docs/EVENT_OPERATIONS.md": {
-      "bytes": 6706,
-      "sha256": "d8e83fe11b6aefd8092863a11c39392794bb8b17d4fee9a68b8eecf15c60be7d"
+      "bytes": 7081,
+      "sha256": "fd70315cda7f3b7a82e7e7d6618d15ce498782b8cc365dbe00ebb2a0e1b144a7"
     },
     "docs/EVENT_READINESS.md": {
       "bytes": 5444,
@@ -473,6 +477,10 @@
     "docs/PRESENTER_DEPLOYMENT.md": {
       "bytes": 7236,
       "sha256": "23100528a855ee2887ddf8eb432b659e49efd848400309e292f5a1d4254dbe04"
+    },
+    "docs/PUBLIC_ACCESS.md": {
+      "bytes": 2203,
+      "sha256": "91e7b1acef3630caea7e56fc41e1ab61f5788bc926983c38bc4d5d7def7e2115"
     },
     "docs/RECORDING_GUIDE.md": {
       "bytes": 3630,
@@ -535,8 +543,8 @@
       "sha256": "682812e3a0512cc62d48cf9922ef88d595ef08dbba70f8b57e4260a235828834"
     },
     "docs/release-manifest.json": {
-      "bytes": 5553,
-      "sha256": "a020f0eefc15498b1925deb06fab83c7b93a572ed934943f42d0ecb7ec627a74"
+      "bytes": 5818,
+      "sha256": "5494e62126b3ad59ce3924731c769b68ccb240ce1b72b3f0a028c13442826ebe"
     },
     "docs/samples-smoke.md": {
       "bytes": 4712,
@@ -986,6 +994,10 @@
       "bytes": 3928,
       "sha256": "2d8fb609c578ca44708540d49998ceb8cdcf8723700683cf61f06f4cd5575083"
     },
+    "tests/test_public_access.py": {
+      "bytes": 1721,
+      "sha256": "7d4a653368e707a7204512d7a27cb6a03b6667f8ba296db930b5ab4116325551"
+    },
     "v2/__init__.py": {
       "bytes": 71,
       "sha256": "6419a04a56295f745fef39a2b355cb60cbae63c7ed4b0577020aef184007154f"
@@ -1221,6 +1233,6 @@
   "deployed_source_commits": {
     "presenter": "d1ae1e24384e88f98540123095e11af3535f979a",
     "judges": "d1ae1e24384e88f98540123095e11af3535f979a",
-    "public": "d1ae1e24384e88f98540123095e11af3535f979a"
+    "public": "3d262e04abd53d852c5697fb81d2bf6aa009b5da"
   }
 }

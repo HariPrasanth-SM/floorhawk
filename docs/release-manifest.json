@@ -131,5 +131,8 @@
     },
     "authorization": "User event-capacity update supersedes prior application dollar/query caps; preserve history. Provider quotas/billing settings unchanged. No automatic shutdown."
   },
-  "event_capacity_verification_sha256": "a48a78eb7882e60653b463a8bb30fa3c18a25416c761e60c8c837951d53d1587"
+  "event_capacity_verification_sha256": "a48a78eb7882e60653b463a8bb30fa3c18a25416c761e60c8c837951d53d1587",
+  "public_access_release": "3d262e04abd53d852c5697fb81d2bf6aa009b5da",
+  "public_access": "unique anonymous signed sessions; protected judges/presenter unchanged",
+  "public_access_report_sha256": "103a7b69b9edb982180549e4eb1c90728a1312d2deeff024284c1a8016ba816e"
 }
