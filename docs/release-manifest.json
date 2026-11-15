@@ -97,5 +97,39 @@
   "public_event_allocation_usd": 15,
   "public_reservations_usd": 7.5,
   "public_estimated_admissions_remaining": 30,
-  "event_readiness_report": "EVENT_READINESS.md"
+  "event_readiness_report": "EVENT_READINESS.md",
+  "event_capacity_release": "d1ae1e24384e88f98540123095e11af3535f979a",
+  "event_capacity_policy": {
+    "version": "event-capacity-20261115",
+    "application_spending_caps": false,
+    "cumulative_query_caps": false,
+    "prepaid_permits_required": false,
+    "provider_max_inflight": 11,
+    "submission_burst_per_session": 6,
+    "submission_burst_window_seconds": 10,
+    "roles": {
+      "presenter": {
+        "min_workers": 1,
+        "max_workers": 1,
+        "max_active_and_waiting": 3
+      },
+      "judges": {
+        "min_workers": 2,
+        "max_workers": 5,
+        "max_active_and_waiting": 15
+      },
+      "public": {
+        "min_workers": 2,
+        "max_workers": 5,
+        "max_active_and_waiting": 25
+      },
+      "candidate": {
+        "min_workers": 0,
+        "max_workers": 1,
+        "max_active_and_waiting": 3
+      }
+    },
+    "authorization": "User event-capacity update supersedes prior application dollar/query caps; preserve history. Provider quotas/billing settings unchanged. No automatic shutdown."
+  },
+  "event_capacity_verification_sha256": "a48a78eb7882e60653b463a8bb30fa3c18a25416c761e60c8c837951d53d1587"
 }

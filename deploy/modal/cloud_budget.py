@@ -7,7 +7,10 @@ class CloudLedger:
  def __init__(self):self.store=modal.Dict.from_name(STORE);self.path=None
  @contextlib.contextmanager
  def transaction(self):
-  if not self.store.put('lock','budget-operation',skip_if_exists=True):raise BudgetBlocked('Cloud budget busy; retry later')
+  until=time.monotonic()+2
+  while not self.store.put('lock','budget-operation',skip_if_exists=True):
+   if time.monotonic()>=until:raise BudgetBlocked('Cloud accounting busy; retry later')
+   time.sleep(.04)
   try:
    grant=self.store.get(KEY)
    if not grant:raise BudgetBlocked('No prepaid cloud request permits')

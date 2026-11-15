@@ -5,11 +5,20 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[2]))
 import modal
 EVENT_APPS=['floorhawk-presenter','floorhawk-judges','floorhawk-demo','floorhawk-overnight-candidate']
 APPS=EVENT_APPS+['floorhawk-campaign-extraction','floorhawk-final-evaluation']
-p=argparse.ArgumentParser();p.add_argument('action',choices=['warm','ready','status','off','stop']);p.add_argument('--app',choices=APPS,default='floorhawk-presenter');p.add_argument('--budget',action='store_true');p.add_argument('--admission',action='store_true');p.add_argument('--billing',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('action',choices=['warm','ready','status','off','stop']);p.add_argument('--app',choices=APPS,default='floorhawk-presenter');p.add_argument('--budget',action='store_true');p.add_argument('--admission',action='store_true');p.add_argument('--billing',action='store_true');p.add_argument('--quota',action='store_true');p.add_argument('--verify-workers',type=int);p.add_argument('--logs',action='store_true');a=p.parse_args()
 if a.action=='stop':raise SystemExit(subprocess.run([str(Path(sys.executable).parent/'modal'),'app','stop',a.app,'--yes']).returncode)
 if a.app not in EVENT_APPS and a.action!='status':raise SystemExit('Campaign apps support read-only status or explicit stop; no accidental warming')
 kind={'floorhawk-campaign-extraction':('Extractor','extract'),'floorhawk-final-evaluation':('FinalWorker','evaluate')}.get(a.app,('Resident','ready'));m=modal.Cls.from_name(a.app,kind[0])()
 if a.action=='status':
+ if a.logs:
+  child=subprocess.Popen([str(Path(sys.executable).parent/'modal'),'app','logs',a.app],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True)
+  try:content=child.communicate(timeout=5)[0]
+  except subprocess.TimeoutExpired:
+   child.terminate();content=child.communicate(timeout=3)[0]
+  print('\n'.join(content.splitlines()[-70:]));raise SystemExit
+ if a.quota:
+  from modal.environments import list_environments
+  rows=list_environments();print(json.dumps({'environment_quota':[{'name':r.name,'max_concurrent_gpus':r.max_concurrent_gpus if r.HasField('max_concurrent_gpus')else None,'current_concurrent_gpus':r.current_concurrent_gpus,'max_tasks':r.max_concurrent_tasks if r.HasField('max_concurrent_tasks')else None,'spend_limit_reached':r.spend_limit_reached}for r in rows]},indent=2))
  if a.billing:
   b=modal.Workspace.from_context().billing.summary(cycle='this month')
   print(json.dumps({'billing':{'metered_cost_usd':str(b.metered_cost),'billed_cost_usd':str(b.billed_cost),'adjustments':{k:str(v)for k,v in b.adjustments.items()},'breakdown':{k:str(v)for k,v in b.metered_cost_breakdown.items()},'note':'Workspace month-to-date, may lag; not remaining promotional credit'}},indent=2))
@@ -44,7 +53,24 @@ if a.action=='status':
    if price:known+=((meta.get('input_tokens')or 0)*price[0]+((meta.get('output_tokens')or 0)+(meta.get('thinking_tokens')or 0))*price[1])/1e6
   print(json.dumps({'lifetime_reconciliation':{'canonical_entries':len(canonical),'canonical_reservations_including_existing_envelope_usd':sum(r['reserved']for r in canonical),'old_cloud_recorded_attempts':len(old),'shared_envelope_recorded_attempts':len(rows),'deduplicated_attempt_records':len(combined),'states':dict(collections.Counter(r['status']for r in combined.values())),'known_token_priced_subtotal_usd':known,'known_tokens':{k:sum((r.get('metadata',{}).get(k)or 0)for r in combined.values())for k in ['input_tokens','output_tokens','thinking_tokens']},'unknown_thinking_records':sum(not isinstance(r.get('metadata',{}).get('thinking_tokens'),int)for r in combined.values()),'missing_usage_records':unknown_usage,'unpriced_or_unknown_model_records':dict(unknown_models),'note':'Shared80USD allocation is already inside canonical reservations; NEVER add it again. Known token subtotal is partial, not actual provider billing; unresolved and unused reservations are retained.'}},indent=2))
  raise SystemExit
+from deploy.modal.event_policy import role as role_policy
+role_name={'floorhawk-demo':'public','floorhawk-judges':'judges','floorhawk-presenter':'presenter','floorhawk-overnight-candidate':'candidate'}[a.app];limits=role_policy(role_name)
+if a.action=='ready':
+ call=m.ready.spawn()
+ try:print(json.dumps(call.get(timeout=60),indent=2))
+ except BaseException:
+  call.cancel();raise
+ raise SystemExit
 if a.action=='off':
- m.update_autoscaler(min_containers=0,max_containers=1,scaledown_window=2);print('Warming off for',a.app,'; queries may cold-start. Use stop to disable this deployment entirely.');raise SystemExit
-if a.action=='warm':m.update_autoscaler(min_containers=1,max_containers=1,scaledown_window=120)
-print(json.dumps(m.ready.remote(),indent=2))
+ m.update_autoscaler(min_containers=0,max_containers=limits['max_workers'],scaledown_window=2);print('Warming off for',a.app,'; queries may cold-start. Use stop to disable this deployment entirely.');raise SystemExit
+if a.action=='warm':m.update_autoscaler(min_containers=limits['min_workers'],max_containers=limits['max_workers'],scaledown_window=120)
+from concurrent.futures import ThreadPoolExecutor
+count=a.verify_workers or limits['min_workers'] or 1
+if not 1<=count<=limits['max_workers']:raise SystemExit('Verification count outside role limits')
+def verify(_):
+ call=m.ready.spawn(hold_seconds=15 if count>1 else 0)
+ try:return call.get(timeout=90)
+ except BaseException:
+  call.cancel();raise
+with ThreadPoolExecutor(max_workers=count)as pool:ready=list(pool.map(verify,range(count)))
+print(json.dumps({'app':a.app,'configured':limits,'ready_workers':ready,'distinct_workers':len({r['worker_id']for r in ready})},indent=2))

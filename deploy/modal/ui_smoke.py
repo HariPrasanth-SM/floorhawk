@@ -1,5 +1,9 @@
 """Normal visitor candidate smoke. No verification-session admission bypass."""
 import sys,os,time,json,re,io
+if '--capacity' in sys.argv:
+ from capacity_browser import main
+ main()
+ raise SystemExit
 if '--readiness' in sys.argv:
  from event_readiness import main
  main()

@@ -4,7 +4,9 @@
 
 **Team Academic Menaces · STOA Challenge · Junction 2026**
 
-**Demo video: pending.** A FloorHAWK YouTube URL has not yet been supplied. When available, this section will use a clickable thumbnail linking to the video.
+[![Watch the FloorHAWK demo](https://img.youtube.com/vi/s4ZveDg5kao/hqdefault.jpg)](https://www.youtube.com/watch?v=s4ZveDg5kao)
+
+[Watch the FloorHAWK demo on YouTube](https://www.youtube.com/watch?v=s4ZveDg5kao)
 
 **[Open the protected live demo](https://sm-hariprasanth--web.us-east.modal.run)** · Judges receive access privately from the team. No access code or API key is included in this repository. Presenter links and controls are in the [operator guide](docs/EVENT_OPERATIONS.md).
 
@@ -67,7 +69,7 @@ Gemini complements domain-specific models by reviewing ambiguous questions and c
 
 ## Modal
 
-Modal serves the pipeline independently of the laptop, using versioned model storage and resident GPU models that avoid repeated loading between nearby requests. Presenter, judges and public traffic use separate workers and admission state. Each role is bounded to one T4 worker; presenter and judges can remain warm, while public capacity scales from zero. Browser concurrency is not equivalent to simultaneous GPU inference capacity. Access control, durable quotas and spending reservations remain server-side.
+Modal serves the pipeline independently of the laptop, using versioned model storage and resident GPU models that avoid repeated loading between nearby requests. Presenter, judges and public traffic use separate workers and admission state. Presenter uses one warm T4. Judges and public each keep two T4 workers warm and can scale to five, subject to provider quota. Each GPU worker processes one job at a time. Browser concurrency is not equivalent to simultaneous GPU inference capacity. Access control, durable quotas and spending reservations remain server-side.
 
 ## Codex
 

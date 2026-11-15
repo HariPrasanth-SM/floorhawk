@@ -3,12 +3,14 @@ import os,json,sys,hashlib,hmac,time
 from pathlib import Path
 import modal
 from deploy.modal.base_image import image as base_image,weights,REV,VERSION,ROLE_CONFIG
+from deploy.modal.event_policy import policy as event_policy
+CAPACITY=event_policy()
 ROLE=os.environ.get('FLOORHAWK_EVENT_ROLE')or ROLE_CONFIG.get('role','candidate')
 ROLES={'presenter':{'app':'floorhawk-presenter','label':'presenter','jobs':'floorhawk-presenter-jobs','root':'/presenter-jobs','control':'floorhawk-presenter-control-v1','warm':1,'secret':'floorhawk-presenter-access'},'judges':{'app':'floorhawk-judges','label':'judges','jobs':'floorhawk-judges-jobs','root':'/judges-jobs','control':'floorhawk-judges-control-v1','warm':1,'secret':'floorhawk-presenter-access'},'public':{'app':'floorhawk-demo','label':'web','jobs':'floorhawk-jobs','root':'/jobs','control':'floorhawk-control-v1','warm':0,'secret':'floorhawk-access'},'candidate':{'app':'floorhawk-overnight-candidate','label':'overnight-candidate','jobs':'floorhawk-candidate-jobs','root':'/candidate-jobs','control':'floorhawk-candidate-control-v1','warm':0,'secret':'floorhawk-presenter-access'}}
 if ROLE not in ROLES:raise ValueError('Unregistered event deployment role')
-R=ROLES[ROLE];app=modal.App(R['app']);jobs=modal.Volume.from_name(R['jobs'],create_if_missing=True);state=modal.Dict.from_name(R['control'],create_if_missing=True)
-image=base_image.env({'FLOORHAWK_EVENT_ROLE':ROLE,'FLOORHAWK_PRESENTER':'0'if ROLE=='public'else'1','FLOORHAWK_GALLERY_STORE':'floorhawk-presenter-gallery-v1','FLOORHAWK_GALLERY_ROOT':'/weights/presenter-gallery-v1','PROOFPLAN_RESULTS_ROOT':R['root'],'PROOFPLAN_CACHE_ROOT':'/tmp/floorhawk-event-'+ROLE})
-@app.cls(serialized=False,image=image,gpu='T4',cpu=(2,2),memory=(8192,8192),timeout=480,max_containers=1,min_containers=R['warm'],scaledown_window=120,retries=0,volumes={'/weights':weights,R['root']:jobs},secrets=[modal.Secret.from_name('floorhawk-gemini')])
+R=ROLES[ROLE];R.update(warm=CAPACITY['roles'][ROLE]['min_workers'],maximum=CAPACITY['roles'][ROLE]['max_workers']);app=modal.App(R['app']);jobs=modal.Volume.from_name(R['jobs'],create_if_missing=True);state=modal.Dict.from_name(R['control'],create_if_missing=True)
+image=base_image.env({'FLOORHAWK_EVENT_ROLE':ROLE,'FLOORHAWK_EVENT_CAPACITY':'1','FLOORHAWK_PRESENTER':'0'if ROLE=='public'else'1','FLOORHAWK_GALLERY_STORE':'floorhawk-presenter-gallery-v1','FLOORHAWK_GALLERY_ROOT':'/weights/presenter-gallery-v1','PROOFPLAN_RESULTS_ROOT':R['root'],'PROOFPLAN_CACHE_ROOT':'/tmp/floorhawk-event-'+ROLE})
+@app.cls(serialized=False,image=image,gpu='T4',cpu=(2,2),memory=(8192,8192),timeout=480,max_containers=R['maximum'],min_containers=R['warm'],scaledown_window=120,retries=0,volumes={'/weights':weights,R['root']:jobs},secrets=[modal.Secret.from_name('floorhawk-gemini')])
 class Resident:
  @modal.enter()
  def initialize(self):
@@ -40,13 +42,18 @@ class Resident:
    return original_generate(*args,**kwargs)
   gemini.generate=guarded_generate;self.runtime.app.paired.provider=guarded_generate
  @modal.method()
- def ready(self):return dict(self.runtime.readiness(),role=ROLE,release=REV,verified_asset_files=self.assets_verified,resource_limits={'cpu_request_cores':2,'cpu_limit_cores':2,'memory_request_mib':8192,'memory_limit_mib':8192,'gpu_max_workers':1})
+ def ready(self,hold_seconds=0):
+  if not 0<=hold_seconds<=15:raise ValueError('Bounded readiness hold')
+  time.sleep(hold_seconds)
+  return dict(self.runtime.readiness(),role=ROLE,release=REV,verified_asset_files=self.assets_verified,resource_limits={'cpu_request_cores':2,'cpu_limit_cores':2,'memory_request_mib':8192,'memory_limit_mib':8192,'gpu_max_workers':R['maximum'],'gpu_min_workers':R['warm'],'gpu_input_concurrency':1})
  @modal.method()
  def run(self,ident):
-  jobs.reload();job=json.loads((Path(R['root'])/'app'/ident/'job.json').read_text());self.job_review_enabled=job.get('gemini_enabled_at_submission',True);status=self.runtime.run(ident);jobs.commit()
+  execution_started=time.time();jobs.reload();job=json.loads((Path(R['root'])/'app'/ident/'job.json').read_text());self.job_review_enabled=job.get('gemini_enabled_at_submission',True);status=self.runtime.run(ident);execution_finished=time.time()
   from deploy.modal.presenter_controls import PresenterControls
   from deploy.modal.security import Controls
-  (Controls if ROLE=='public'else PresenterControls)(state,'').complete(ident,status);return {'job_id':ident,'status':status,'role':ROLE,'resident':self.runtime.readiness()}
+  completed=json.loads((Path(R['root'])/'app'/ident/'job.json').read_text());completed['worker_execution_interval']={'started_epoch':execution_started,'finished_epoch':execution_finished,'worker_id':self.runtime.worker_id};from qa.common import write_json
+  write_json(Path(R['root'])/'app'/ident/'job.json',completed);jobs.commit();timing=completed.get('presenter_timing',{})
+  (Controls if ROLE=='public'else PresenterControls)(state,'').complete(ident,status,{'worker_id':self.runtime.worker_id,'timing':timing,'compute_estimate_usd':timing.get('worker_seconds',0)*.00020796,'estimate_note':'Worker execution only; excludes idle/startup/API/network; not provider billing'});return {'job_id':ident,'status':status,'role':ROLE,'resident':self.runtime.readiness()}
 @app.function(serialized=False,image=image,cpu=(1,1),memory=(4096,4096),max_containers=2 if ROLE=='public' else 1,min_containers=0,timeout=120,volumes={'/weights':weights,R['root']:jobs},secrets=[modal.Secret.from_name(R['secret'])])
 @modal.concurrent(max_inputs=20)
 @modal.asgi_app(label=R['label'])

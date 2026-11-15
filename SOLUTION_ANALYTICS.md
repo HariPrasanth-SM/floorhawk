@@ -1,5 +1,7 @@
 # FloorHAWK current analytics — frozen release5827eab
 
+Current event update: release d1ae1e2; presenter1/1,judges2/5,public2/5T4. No application cumulative dollar/query/permit gates; preserved historical accounting is not a current allowance. Sixworker parallelism, Gemini and residentreuse verified. [Current guide](docs/EVENT_OPERATIONS.md) and [verification](docs/EVENT_CAPACITY.md) supersede operational limits in older checkpoints below. Benchmark claims are unchanged.
+
 Latest event-readiness pass: public15USDallocation/7.50USDreserved (~30admissions); real Gemini+visible evidence verified on all3roles; concurrent public jobs, idempotency, ownership and isolated peers passed. Publicoperational9cd9301; models/frontend/inferenceunchanged. [Current verification and limits](docs/EVENT_READINESS.md). Older accounting below is historical.
 
 Current deployment8fce908/frozeninference5827eab. Frozen finalLocalCPU stopped:5602/6876recorded; correctall4214/6876(61.29%), recordedsubset4214/5602(75.22%). Partial/overlap caveats and full metrics: [final evaluation](docs/FINAL_EVALUATION.md). No final-result tuning.

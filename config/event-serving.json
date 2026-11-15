@@ -1,0 +1,16 @@
+{
+  "version": "event-capacity-20261115",
+  "application_spending_caps": false,
+  "cumulative_query_caps": false,
+  "prepaid_permits_required": false,
+  "provider_max_inflight": 11,
+  "submission_burst_per_session": 6,
+  "submission_burst_window_seconds": 10,
+  "roles": {
+    "presenter": {"min_workers": 1, "max_workers": 1, "max_active_and_waiting": 3},
+    "judges": {"min_workers": 2, "max_workers": 5, "max_active_and_waiting": 15},
+    "public": {"min_workers": 2, "max_workers": 5, "max_active_and_waiting": 25},
+    "candidate": {"min_workers": 0, "max_workers": 1, "max_active_and_waiting": 3}
+  },
+  "authorization": "User event-capacity update supersedes prior application dollar/query caps; preserve history. Provider quotas/billing settings unchanged. No automatic shutdown."
+}
