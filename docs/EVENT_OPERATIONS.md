@@ -1,11 +1,11 @@
 # FloorHAWK event operations
 
-Run commands from canonical `proofplan/`. The selected event snapshot is `../floorhawk-modal/releases/overnight-candidate-4`, source `5827eab5e423bae3eb7413a2c773183afa2f60f0`; promotion status and actually tested URLs belong in the morning handoff. Until promotion, the existing presenter/public remain unchanged.
+Run commands from canonical `proofplan/`. The selected event snapshot is `../floorhawk-modal/releases/overnight-resource-bounds`, source `5827eab5e423bae3eb7413a2c773183afa2f60f0`; promotion status and actually tested URLs belong in the morning handoff. Until promotion, the existing presenter/public remain unchanged.
 
 ## One source, separate roles
 
 ```bash
-.venv/bin/python -m campaign.operator --role presenter --release ../floorhawk-modal/releases/overnight-candidate-4 --enable-live
+.venv/bin/python -m campaign.operator --role presenter --release ../floorhawk-modal/releases/overnight-resource-bounds --enable-live
 .venv/bin/modal deploy deploy/modal/app.py
 .venv/bin/python deploy/modal/presenter_ops.py warm
 ```
@@ -68,7 +68,7 @@ Original public rollback uses the same environment pattern from `releases/ui-hyb
 ## Export/update and verification
 
 ```bash
-.venv/bin/python deploy/modal/export_release.py --commit COMMIT --output ../floorhawk-modal/releases/NEW --mode backend --frontend ../floorhawk-modal/releases/overnight-candidate-4 --extra-assets results/overnight-20261115/extra-assets.json
+.venv/bin/python deploy/modal/export_release.py --commit COMMIT --output ../floorhawk-modal/releases/NEW --mode backend --frontend ../floorhawk-modal/releases/overnight-resource-bounds --extra-assets results/overnight-20261115/extra-assets.json
 .venv/bin/python deploy/modal/ui_smoke.py --event --role candidate --all --limit 18 --manual --fallback --tag NEW-CHECK
 ```
 

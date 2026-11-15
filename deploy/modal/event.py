@@ -8,7 +8,7 @@ ROLES={'presenter':{'app':'floorhawk-presenter','label':'presenter','jobs':'floo
 if ROLE not in ROLES:raise ValueError('Unregistered event deployment role')
 R=ROLES[ROLE];app=modal.App(R['app']);jobs=modal.Volume.from_name(R['jobs'],create_if_missing=True);state=modal.Dict.from_name(R['control'],create_if_missing=True)
 image=base_image.env({'FLOORHAWK_EVENT_ROLE':ROLE,'FLOORHAWK_PRESENTER':'0'if ROLE=='public'else'1','FLOORHAWK_GALLERY_STORE':'floorhawk-presenter-gallery-v1','FLOORHAWK_GALLERY_ROOT':'/weights/presenter-gallery-v1','PROOFPLAN_RESULTS_ROOT':R['root'],'PROOFPLAN_CACHE_ROOT':'/tmp/floorhawk-event-'+ROLE})
-@app.cls(serialized=False,image=image,gpu='T4',cpu=2,memory=8192,timeout=480,max_containers=1,min_containers=R['warm'],scaledown_window=120,retries=0,volumes={'/weights':weights,R['root']:jobs},secrets=[modal.Secret.from_name('floorhawk-gemini')])
+@app.cls(serialized=False,image=image,gpu='T4',cpu=(2,2),memory=(8192,8192),timeout=480,max_containers=1,min_containers=R['warm'],scaledown_window=120,retries=0,volumes={'/weights':weights,R['root']:jobs},secrets=[modal.Secret.from_name('floorhawk-gemini')])
 class Resident:
  @modal.enter()
  def initialize(self):
@@ -40,14 +40,14 @@ class Resident:
    return original_generate(*args,**kwargs)
   gemini.generate=guarded_generate;self.runtime.app.paired.provider=guarded_generate
  @modal.method()
- def ready(self):return dict(self.runtime.readiness(),role=ROLE,release=REV,verified_asset_files=self.assets_verified)
+ def ready(self):return dict(self.runtime.readiness(),role=ROLE,release=REV,verified_asset_files=self.assets_verified,resource_limits={'cpu_request_cores':2,'cpu_limit_cores':2,'memory_request_mib':8192,'memory_limit_mib':8192,'gpu_max_workers':1})
  @modal.method()
  def run(self,ident):
   jobs.reload();job=json.loads((Path(R['root'])/'app'/ident/'job.json').read_text());self.job_review_enabled=job.get('gemini_enabled_at_submission',True);status=self.runtime.run(ident);jobs.commit()
   from deploy.modal.presenter_controls import PresenterControls
   from deploy.modal.security import Controls
   (Controls if ROLE=='public'else PresenterControls)(state,'').complete(ident,status);return {'job_id':ident,'status':status,'role':ROLE,'resident':self.runtime.readiness()}
-@app.function(serialized=False,image=image,cpu=1,memory=4096,max_containers=2 if ROLE=='public' else 1,min_containers=0,timeout=120,volumes={'/weights':weights,R['root']:jobs},secrets=[modal.Secret.from_name(R['secret'])])
+@app.function(serialized=False,image=image,cpu=(1,1),memory=(4096,4096),max_containers=2 if ROLE=='public' else 1,min_containers=0,timeout=120,volumes={'/weights':weights,R['root']:jobs},secrets=[modal.Secret.from_name(R['secret'])])
 @modal.concurrent(max_inputs=20)
 @modal.asgi_app(label=R['label'])
 def web():

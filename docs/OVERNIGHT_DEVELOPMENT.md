@@ -68,3 +68,48 @@ Known high-volume residuals include windows, doors, shower/bath fixtures and nat
 Timing in this comparison is cached; fresh browser/server timings are recorded separately in external deployment verification. Original evaluation manifest and graders remain unchanged.
 
 Reproduce: `.venv/bin/python -m campaign.report_development`. Machine summary: `results/overnight-20261115/development-report/summary.json`; question rows remain in the hashed run directories.
+
+
+## Positive versus zero count references
+
+These are evaluator-only DEVELOPMENT strata. No reference sign is an inference feature. Repeated translations can overweight drawings, so drawing counts are included.
+
+|Target|Reference|Correct / questions|Unique drawing groups|
+|---|---|---:|---:|
+|apartment|positive|162/162 (100.0%)|81|
+|balcony|positive|112/118 (94.9%)|59|
+|balcony|zero|90/100 (90.0%)|50|
+|bathroom|positive|308/332 (92.8%)|166|
+|bathroom|zero|20/24 (83.3%)|12|
+|bathtub|positive|76/121 (62.8%)|64|
+|bedroom|positive|328/364 (90.1%)|182|
+|bedroom|zero|34/62 (54.8%)|31|
+|door|positive|394/713 (55.3%)|351|
+|kitchen|positive|456/474 (96.2%)|237|
+|room|positive|924/960 (96.2%)|83|
+|sauna|positive|274/282 (97.2%)|141|
+|sauna|zero|202/210 (96.2%)|105|
+|shower|positive|38/49 (77.6%)|26|
+|shower_bath|positive|498/638 (78.1%)|319|
+|shower_bath|zero|30/34 (88.2%)|17|
+|sink|positive|728/841 (86.6%)|424|
+|sink|zero|24/27 (88.9%)|14|
+|storey|positive|702/722 (97.2%)|361|
+|toilet_fixture|positive|792/852 (93.0%)|426|
+|toilet_fixture|zero|30/32 (93.8%)|16|
+|wc_room|positive|138/146 (94.5%)|73|
+|wc_room|zero|188/204 (92.2%)|102|
+|window|positive|535/899 (59.5%)|445|
+
+## Visual audit of correct count-head cases
+
+Four selected numerically correct DEVELOPMENT predictions were rendered from their saved source regions; no new inference or reference geometry was created. Original source attribution remains on the external overlays. This small audit is not localization accuracy.
+
+|Question ID|Target / answer|Observed source evidence|Interpretation|
+|---|---|---|---|
+|q-000040|Storeys2|Two actual plan regions labelled1.krs and2.krs|Supports two depicted storeys; no inference about hidden building levels|
+|q-000072|Kitchen1|One boxed KK kitchenette with cooking fixtures|Visually consistent with the room role; source containment inspected|
+|q-000074|Bathroom1|One boxed KH room with sanitary/shower fixtures|Visually consistent with a bathroom, rather than a separate WC room|
+|q-000184|Sauna1|S label/bench is present, but the coarse box extends into garage context|Count agrees; boundary localization is imprecise. Agreement is not spatial correctness|
+
+Overlays and original saved records: `results/overnight-20261115/count-evidence-audit/{storey,kitchen,bathroom,sauna}.{png,json}`. No images or bulk predictions are committed. A zero answer with no evidence is never evidence of verified absence.

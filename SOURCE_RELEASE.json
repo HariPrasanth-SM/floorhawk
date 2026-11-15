@@ -1,5 +1,5 @@
 {
-  "source_commit": "bf1dbd4b7128e77e32709f9baf898398fbe82567",
+  "source_commit": "4c3d164187250d3f093cff55c6c8b8610b6ae3fa",
   "repository": "private FloorHAWK submission",
   "files": {
     ".env.example": {
@@ -23,20 +23,20 @@
       "bytes": 5379
     },
     "MORNING_HANDOFF.md": {
-      "sha256": "0f598a21bde26b2d0180756a766134040ad1c85c672702bdcd3f66c1cd8a641b",
-      "bytes": 6920
+      "sha256": "cf0302840bee064b9d1449f20cb5bff917fb3b71be359ff718277f64ed89fac8",
+      "bytes": 7397
     },
     "README.md": {
       "sha256": "15260caf455a925382454c9e64f525b843b19dacb422ac7e1d65dff271f1ee22",
       "bytes": 12059
     },
     "SOLUTION_ANALYTICS.md": {
-      "sha256": "c16202a7f17014fe9d7082a590fe48a8c0c2c2bc798f3eff0a986cf93a0a634e",
-      "bytes": 5632
+      "sha256": "8d41ca2bdfd53929902760f6ad9957b24962f2bca1b1a0a96c01ac4bc9156d5c",
+      "bytes": 6108
     },
     "STATUS.md": {
-      "sha256": "37bcf7733e9a8cc28a0647e0118dffc013dd0526772bba5ab39af9c3d3ede787",
-      "bytes": 3253
+      "sha256": "df6db7cd6b0141caf4b6c44ddd5f785751e8b57ed8d4455e7f78a2207d6e2c93",
+      "bytes": 3730
     },
     "app.py": {
       "sha256": "84a12d83ec600c2b59814659c1a9d6c50c777bc60befa30ddea31538cbd4c2a3",
@@ -287,8 +287,8 @@
       "bytes": 2606
     },
     "deploy/modal/event.py": {
-      "sha256": "ab61a681e91a0c882514323e2b4a52c8677e8568062b2833e04d935113e3a46d",
-      "bytes": 5505
+      "sha256": "7b02b042df54a588b6e9df7f471dffb36c04bee9e3d79b2e4d271ff311a89e87",
+      "bytes": 5657
     },
     "deploy/modal/event_browser.py": {
       "sha256": "f80c3b7d47f532e2db99df8aac442bb09ff0e6744667d4dccb3650f3b2511825",
@@ -343,8 +343,8 @@
       "bytes": 1234
     },
     "deploy/modal/presenter_ops.py": {
-      "sha256": "c34a96364e9094e7c0f15c06bfa7b0b51f83a1297d3af432ec72806a9219c757",
-      "bytes": 5623
+      "sha256": "cd6ba6daa697c5187784d08fbc9a20d83a059ad02fac2d6ce52cd274e090cf1d",
+      "bytes": 6040
     },
     "deploy/modal/presenter_prepare.py": {
       "sha256": "9a5023c6eb96b6261a7d4b51fa922f66dc1452b3363de5cafc7904797fbd6d7f",
@@ -387,8 +387,8 @@
       "bytes": 6112
     },
     "docs/EVENT_OPERATIONS.md": {
-      "sha256": "205e660a3d956c6a5839f7f1b2ac634947997b199e65462254618d2937b67324",
-      "bytes": 6154
+      "sha256": "9411912ae32790480a247e8e4a6c99470a9b15d9e5a80d77b16c6f2fbc91fe5f",
+      "bytes": 6166
     },
     "docs/MODAL_DEPLOYMENT.md": {
       "sha256": "5e4953ac101d5416cccab3f559c75d02ef4aedc53753811f25bf5c7ccee81360",
@@ -399,16 +399,16 @@
       "bytes": 4938
     },
     "docs/OVERNIGHT_DEPLOYMENT_VERIFICATION.md": {
-      "sha256": "bff75e4640cf5e5d17533c206babb345704a86b0ce36b2f821ed7b1989b1adbf",
-      "bytes": 5390
+      "sha256": "2321b925ad953ad0397443621c9582e0a8a92d6233c2870e1682eeba9b226a38",
+      "bytes": 7380
     },
     "docs/OVERNIGHT_DEVELOPMENT.md": {
-      "sha256": "61c6ee5c6e861f61fec1561796c88bf29b84dcda5b26cb3e60845030836d46d8",
-      "bytes": 3615
+      "sha256": "910e68e7d779ac5fff282529bc244c8145db5e77aed00dfaf0d5528c08a3c643",
+      "bytes": 6033
     },
     "docs/OVERNIGHT_PROGRESS.md": {
-      "sha256": "bdb53d00f84bd6c5e7ce314e673fa571315aebd3a062bfe05f2210cbd919c778",
-      "bytes": 4493
+      "sha256": "ac8b47a3b0dde359f7d236656b9f6afdfaefee5ecc581dd714c2b709e5ba1bf3",
+      "bytes": 4751
     },
     "docs/PRESENTER_BROWSER_VERIFICATION.md": {
       "sha256": "eee5992c32a88858c0aab871a38f3cd98e5ba47cb77cc8e308241a367236fd70",
@@ -475,8 +475,8 @@
       "bytes": 5768
     },
     "docs/release-manifest.json": {
-      "sha256": "57d5474c796fb807e2e8a1d6beaaf7fbbf32aa979cf6a8ecdb396f1400e8fa3b",
-      "bytes": 2827
+      "sha256": "8939468a01106e6f4d698294aa932c005962c12601ba3852118170645861999a",
+      "bytes": 4317
     },
     "docs/samples-smoke.md": {
       "sha256": "7fc8091c6ab13d08de6963d27cc6754344b84e9b988ad5f1665121be9aaca496",
@@ -879,8 +879,8 @@
       "bytes": 984
     },
     "tests/test_modal_deploy.py": {
-      "sha256": "952994300dca1de8fe0cec7484321b6d25fed629b6f5448ba15398acb7380e72",
-      "bytes": 3402
+      "sha256": "53e42c4bfce14c60159d92b28db986d2a63e8ffc9d1f9d25aa713f386ef9acce",
+      "bytes": 3988
     },
     "tests/test_overnight.py": {
       "sha256": "ac252ebec61f075434bc72cbecef09413fb639bcf29f23d6fc73c30ece25efda",
@@ -1124,5 +1124,6 @@
     }
   },
   "exclusions": "No history, datasets, drawings, references, weights, predictions, secrets or raw agent sessions. External artifact checksums/restoration instructions retained.",
-  "deployed_source_commit": "5827eab5e423bae3eb7413a2c773183afa2f60f0"
+  "deployed_source_commit": "8fce90834c82935f6180baac8a7071763269b183",
+  "frozen_inference_commit": "5827eab5e423bae3eb7413a2c773183afa2f60f0"
 }

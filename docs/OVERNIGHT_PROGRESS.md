@@ -32,3 +32,6 @@ Best dev estimate remains7925/9471=83.68%, practicaldeployment7923/9471=83.66%;8
 ## 2026-11-15T06:15:20.617608+02:00 — delivery complete, frozen evaluation running
 
 Three endpoint browser checks passed; source5827eab onallroles. Privatefloorhawk repository pushed initial4d3704d,281source/docsfiles about2.7MB, noSecret/bulkartifacts/agenthistory; inference hashes match frozen5827. Canonicaldevelopmentmainb1b8816pushed too. FrozenLocalCPU finalprocess startedafter DELIVERY_VERIFIED, withglobalflock andresource/deadline launcher. At06:12checkpoint906questions/25sources recorded,0providercalls; referencesunopened. No model/route/prompt/threshold/grader tuning.
+
+
+2026-11-15T06:49:23.379965+02:00: resource-only8fce908 promoted/normal-login checked on all3URLs; frozen inference5827unchanged;canary18/18,final roles1/1each;79focused/142unique tests;no new provider calls. FinalCPU3308/6876at06:47,scoring not inspected.

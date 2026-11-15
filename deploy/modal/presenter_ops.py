@@ -3,14 +3,16 @@ import argparse,json,subprocess,sys,collections
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]))
 import modal
-APPS=['floorhawk-presenter','floorhawk-judges','floorhawk-demo','floorhawk-overnight-candidate']
+EVENT_APPS=['floorhawk-presenter','floorhawk-judges','floorhawk-demo','floorhawk-overnight-candidate']
+APPS=EVENT_APPS+['floorhawk-campaign-extraction','floorhawk-final-evaluation']
 p=argparse.ArgumentParser();p.add_argument('action',choices=['warm','ready','status','off','stop']);p.add_argument('--app',choices=APPS,default='floorhawk-presenter');p.add_argument('--budget',action='store_true');p.add_argument('--admission',action='store_true');a=p.parse_args()
 if a.action=='stop':raise SystemExit(subprocess.run([str(Path(sys.executable).parent/'modal'),'app','stop',a.app,'--yes']).returncode)
-m=modal.Cls.from_name(a.app,'Resident')()
+if a.app not in EVENT_APPS and a.action!='status':raise SystemExit('Campaign apps support read-only status or explicit stop; no accidental warming')
+kind={'floorhawk-campaign-extraction':('Extractor','extract'),'floorhawk-final-evaluation':('FinalWorker','evaluate')}.get(a.app,('Resident','ready'));m=modal.Cls.from_name(a.app,kind[0])()
 if a.action=='status':
- try:print(m.ready.get_current_stats())
+ try:print(getattr(m,kind[1]).get_current_stats())
  except Exception as e:print('Resident stats unavailable:',type(e).__name__,'(legacy or stopped deployment)')
- if a.admission:
+ if a.admission and a.app in EVENT_APPS:
   name={'floorhawk-presenter':'floorhawk-presenter-control-v1','floorhawk-judges':'floorhawk-judges-control-v1','floorhawk-demo':'floorhawk-control-v1','floorhawk-overnight-candidate':'floorhawk-candidate-control-v1'}[a.app];store=modal.Dict.from_name(name);state=store.get('admission-state-v1',{});print(json.dumps({'app':a.app,'live':state.get('live',False),'gemini':state.get('gemini',False),'lock_present':store.contains('admission-lock-v1'),'active_jobs':sum(j['status']in ['reserved','queued','running']for j in state.get('jobs',{}).values()),'compute_reservation_usd':state.get('compute_reservation_usd',0),'durable_job_statuses':dict(collections.Counter(j['status']for j in state.get('jobs',{}).values()))},indent=2))
  if a.budget:
   from deploy.modal.presenter_budget import PresenterLedger

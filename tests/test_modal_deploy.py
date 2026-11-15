@@ -12,6 +12,14 @@ class Store:
  def pop(self,k,default=None):
   with self.lock:return self.rows.pop(k,default)
 class ModalTests(unittest.TestCase):
+ def test_event_resources_have_explicit_hard_limits(self):
+  import ast
+  root=Path(__file__).resolve().parents[1];tree=ast.parse((root/'deploy/modal/event.py').read_text());found=[]
+  for node in ast.walk(tree):
+   if isinstance(node,ast.Call)and isinstance(node.func,ast.Attribute)and node.func.attr in ['cls','function']:
+    values={k.arg:k.value for k in node.keywords}
+    if 'cpu'in values and 'memory'in values:found.append((ast.literal_eval(values['cpu']),ast.literal_eval(values['memory'])))
+  self.assertIn(((2,2),(8192,8192)),found);self.assertIn(((1,1),(4096,4096)),found)
  def test_idempotent_recovery_never_charges_exhausted_budget_again(self):
   store=Store();controls=Controls(store,'');ident,_=controls.reserve('owner','same',False,'release','local');state=store.get('admission-state-v1');state['compute_reservation_usd']=7;state['live']=False;store.put('admission-state-v1',state);self.assertEqual(controls.reserve('owner','same',False,'release','local'),(ident,False));self.assertEqual(store.get('admission-state-v1')['compute_reservation_usd'],7)
   with self.assertRaises(Denied):controls.reserve('other','new',False,'release','local')

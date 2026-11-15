@@ -1,5 +1,7 @@
 # FloorHAWK current analytics — frozen release5827eab
 
+Current deployment checkpoint: all3URLs verified at resource-only revision `8fce908`; frozen inference base remains `5827eab`. See [resource correction](docs/OVERNIGHT_DEPLOYMENT_VERIFICATION.md). Final LocalCPU evaluation continues under the07:30deadline; references were opened only by a separate evaluator after freeze/delivery and no final prediction scores have been inspected. Prior statements below saying references remain unopened are superseded by this checkpoint.
+
 Academic Menaces · STOA — Make Blueprints Talk · Junction2026.
 
 ## Serving release versus candidate
@@ -53,4 +55,4 @@ Frozen LocalCPU evaluation began only after deployment and private submission de
 Reproduce saved-result comparison: `.venv/bin/python -m campaign.report_development`. Scores/row-level records: `results/overnight-20261115/candidate-production-policy/{score.json,rows.jsonl}`; original best estimate: `candidate-pdf-recovery-v3/`; contract: `baseline/contract.json`; source hashes and run paths: `development-report/summary.json`. Browser artifacts remain outside Git under `floorhawk-modal/verification/overnight-candidate/`.
 
 
-Current event deployments passed normal-login checks: [deployment verification](docs/OVERNIGHT_DEPLOYMENT_VERIFICATION.md). Three roles share source/config/frontend and have distinct workers. Latest lifetime reconciliation:722HTTPresponses+1unresolved; partialknown token subtotal2.9772555USD, not billing. Public retained7USDguard is5.50USDreserved/six additional admissions; presenter/judges remain independent.
+Current event deployments passed normal-login checks: [deployment verification](docs/OVERNIGHT_DEPLOYMENT_VERIFICATION.md). Three roles share source/config/frontend and have distinct workers. Latest lifetime reconciliation:722HTTPresponses+1unresolved; partialknown token subtotal2.9772555USD, not billing. Public retained7USDguard is5.75USDreserved/six additional admissions; presenter/judges remain independent.

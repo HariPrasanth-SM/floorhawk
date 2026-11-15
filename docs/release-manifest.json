@@ -1,6 +1,6 @@
 {
-  "source_commit": "5827eab5e423bae3eb7413a2c773183afa2f60f0",
-  "release_manifest_sha256": "9f337ae0c15caff3e94b68511c897e191eb5d9d7959d87aced5b1c945169437f",
+  "source_commit": "8fce90834c82935f6180baac8a7071763269b183",
+  "release_manifest_sha256": "f514fdd997c01adf66de4d7990df0010b6938521977234e92a41ec0cd902a551",
   "frontend_sha256": "a111edce02bc2803837609cf4b15bfc19d3ee1e9ff2f003826aa2a2c49aafae8",
   "configuration_sha256": "016a6169eebbc34f851c60ebd564ff753a506a8ffbf561211e9fee099e35829c",
   "standard_asset_version": "a18a52dae0e7-3ec800c811f2",
@@ -8,51 +8,90 @@
   "custom_checkpoint_sha256": "95fd78b75b72f50963c03d710dbd38b9c7259e21e141c019f58ab7fbb57e54ea",
   "selector_sha256": "568decc669d2ce00ed71f9f0cd0345dfedda5f2302293acb9d7777e0333c0c69",
   "api_contract": "floorhawk.jobs.v1",
-  "time": "2026-11-15T06:03:25.829652+02:00",
+  "time": "2026-11-15T06:49:23.379965+02:00",
   "roles": {
     "presenter": {
       "url": "https://sm-hariprasanth--presenter.us-east.modal.run",
       "browser_passed": true,
-      "worker_id": "71da5a9cf6a74737aafe3a3f8052a661",
+      "worker_id": "4df64679620845deaf90d50410e5efd3",
       "curated_questions": 18,
       "curated_correct": 18,
       "manual_upload_questions": 4,
       "provider_attempts": 0,
       "browser_report_sha256": "40d8112ef0fbe165ffb72c20de495da872c778b9fec4978284df005c0f818c71",
       "warm_min": 1,
-      "gpu_max": 1
+      "gpu_max": 1,
+      "resource_update_verification": {
+        "browser_passed": true,
+        "questions": 1,
+        "worker_id": "4df64679620845deaf90d50410e5efd3",
+        "browser_report_sha256": "655e509fd275e9c105062f7247fe7021b2cc186a144e0ad29efb9b5d84c682e5",
+        "browser_seconds": 9.404071876000671,
+        "provider_attempts": 0
+      }
     },
     "judges": {
       "url": "https://sm-hariprasanth--judges.us-east.modal.run",
       "browser_passed": true,
-      "worker_id": "c89382aee18c4b9baefa7013505663ad",
+      "worker_id": "9e7bed08640548fbbbc64f05490cbe15",
       "curated_questions": 12,
       "curated_correct": 12,
       "manual_upload_questions": 4,
       "provider_attempts": 0,
       "browser_report_sha256": "c2a9800cfceb3ab230ae0ea51c9c77a7453c55eab3f7a16fc83739ac9e19d1c9",
       "warm_min": 1,
-      "gpu_max": 1
+      "gpu_max": 1,
+      "resource_update_verification": {
+        "browser_passed": true,
+        "questions": 1,
+        "worker_id": "9e7bed08640548fbbbc64f05490cbe15",
+        "browser_report_sha256": "ea90f60cf6c13fc62a5e7b4d944ee82aade3b87f874bcc1f177a2f61981026c4",
+        "browser_seconds": 14.187630779000756,
+        "provider_attempts": 0
+      }
     },
     "public": {
       "url": "https://sm-hariprasanth--web.us-east.modal.run",
       "browser_passed": true,
-      "worker_id": "67f7e2afcaa04b49ba13caabd4c77e88",
+      "worker_id": "9c41f1187ae445b7be04b1999e206a02",
       "curated_questions": 1,
       "curated_correct": 1,
       "manual_upload_questions": 0,
       "provider_attempts": 0,
       "browser_report_sha256": "83778c5f996ce74d9000002c47bcdf8094ea84ddbdeccacf8e482bd87165b753",
       "warm_min": 0,
-      "gpu_max": 1
+      "gpu_max": 1,
+      "resource_update_verification": {
+        "browser_passed": true,
+        "questions": 1,
+        "worker_id": "9c41f1187ae445b7be04b1999e206a02",
+        "browser_report_sha256": "797a2780ceff56237df43db7e9d871bfe0c1c70e1e19739aca958799de95191a",
+        "browser_seconds": 32.98561408200112,
+        "provider_attempts": 0
+      }
     }
   },
   "limits": [
     "Curated checks are not held-out accuracy.",
     "No successful new semantic cloud review is claimed from these provider-free browser checks; preflight/provider variants were verified earlier.",
-    "Public conservative7USD cumulative compute reservation guard retained, now5.50USD: six additional0.25USD admissions available. This is not actual Modal billing.",
+    "Public conservative7USD cumulative compute reservation guard retained, now5.75USD: five additional0.25USD admissions available. This is not actual Modal billing.",
     "Public20session check used authenticated browsing/gallery GETs, not20GPU jobs.",
     "Actual provider billing and Modal invoice unavailable; reservations/token subtotal differ.",
     "Full queue exhaustion and deliberate worker-crash recovery were not injected in serving apps; lock recovery remains fail-closed manual."
-  ]
+  ],
+  "inference_base_commit": "5827eab5e423bae3eb7413a2c773183afa2f60f0",
+  "deployment_correction": "Explicit platform CPU/RAM hard limits only; frozen inference core/frontend/model/config hashes unchanged",
+  "resource_limits": {
+    "gpu_worker": {
+      "cpu_cores": 2,
+      "ram_mib": 8192,
+      "max_workers_per_role": 1
+    },
+    "api": {
+      "cpu_cores": 1,
+      "ram_mib": 4096,
+      "max_containers_public": 2,
+      "max_containers_other": 1
+    }
+  }
 }

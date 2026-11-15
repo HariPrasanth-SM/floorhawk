@@ -1,5 +1,7 @@
 # Morning handoff — FloorHAWK
 
+Current deployment checkpoint: all3URLs verified at resource-only revision `8fce908`; frozen inference base remains `5827eab`. See [resource correction](docs/OVERNIGHT_DEPLOYMENT_VERIFICATION.md). Final LocalCPU evaluation continues under the07:30deadline; references were opened only by a separate evaluator after freeze/delivery and no final prediction scores have been inspected. Prior statements below saying references remain unopened are superseded by this checkpoint.
+
 Academic Menaces · STOA — Make Blueprints Talk · Junction2026.
 
 Checkpoint 2026-11-15T06:07:14.398390+02:00. Deployment/browser/private submission delivery is verified. Private repository: https://github.com/HariPrasanth-SM/floorhawk ; initial commit4d3704dc2767a084bdfdb89d2ec943d7ad4587d6. Exported from canonical b1b8816 with frozen inference files matching deployed5827eab. No public conversion or agent history. Frozen LocalCPU evaluation is running under the global advisory lock and monitored07:30 deadline; no provider calls or tuning. Final references remain unopened while inference proceeds. This file will be updated after evaluation/shutdown.
@@ -22,7 +24,7 @@ Selected policy answer coverage9179/9544(96.18%); count MAE0.484050, signed bias
 
 Presenter18/18curated+4manual PNG/PDF/IFC; judges12/12curated+4manual; public1fresh live GPU question+20authenticated browsing contexts. Actual source-linked fzk model107meshes/11windowGUIDhighlights, including manual upload. Repeated/source-replaced questions, exact reference clearing, session isolation, idempotent job recovery, reload/poll retry without resubmission, PNG/PDF annotated export and bothdesktop sizes passed. No browser runtime errors. Models loaded once per role; actual CUDA input tensors and GPU memory/activity recorded.
 
-Focused78test suite and approved93suite passed, with30overlap =>141unique tests. Earlier137combined run had one sandbox socket error, successfully covered by approved rerun. Full queue/crash injection and all public quota boundary cases were not repeated. Successful new semantic cloud review is not claimed from provider-free browser smokes; earlier preflight/provider variant generation and explicit Local fallback are separate evidence. [Verification](docs/OVERNIGHT_DEPLOYMENT_VERIFICATION.md).
+Focused79test suite and approved93suite passed, with30overlap =>142unique tests. Earlier137combined run had one sandbox socket error, successfully covered by approved rerun. Full queue/crash injection and all public quota boundary cases were not repeated. Successful new semantic cloud review is not claimed from provider-free browser smokes; earlier preflight/provider variant generation and explicit Local fallback are separate evidence. [Verification](docs/OVERNIGHT_DEPLOYMENT_VERIFICATION.md).
 
 ## Timings and accounting
 
@@ -30,7 +32,7 @@ Staging cold query27.67s included an injected polling503;17warm staging queries 
 
 Lifetime read-only reconciliation:722HTTPresponses+1unresolved reservation; known input2957430/output392489tokens; thinkingunrecorded. Partialknown token-priced subtotal2.9772555USD is not final providerbilling. Canonical90.317USDreservations already include80USDsharedallocation. Sharedreserved15.505USD; no new browser provider calls. No reset or cap increase. Actual Modal invoice unavailable;8USDadditional campaign planning ceiling is conservative, not platformenforced.
 
-**Public limitation:** retained7USDcumulative compute guard is5.50USDreserved, leaving six additional0.25USDadmissions. This does not reset with the five-minute visitor window. Presenter/judges are independent; use them for company/recording. No budget was silently raised.
+**Public limitation:** retained7USDcumulative compute guard is5.75USDreserved, leaving five additional0.25USDadmissions. This does not reset with the five-minute visitor window. Presenter/judges are independent; use them for company/recording. No budget was silently raised.
 
 ## Record this
 
