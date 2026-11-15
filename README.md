@@ -14,33 +14,7 @@ Construction drawings scatter useful information across small symbols, room labe
 
 ## Architecture
 
-```mermaid
-flowchart TD
-    Input[Drawing + question]
-    Gemini[Gemini semantic review<br/>Question/task, evidence and relevant source context]
-    subgraph Cloud[Modal backend · isolated serving queues]
-        Route[Question and format routing]
-        Assets[Versioned model assets]
-        Vision[Resident vision models]
-        Text[Native PDF text / OCR]
-        IFC[Scoped IFC queries]
-        Evidence[Shared source-linked evidence]
-        Select[Answer selection]
-        Direct[Supported direct facts]
-        Validate[Validate answer, units and evidence]
-        Route --> Vision & Text & IFC
-        Assets --> Vision
-        Vision & Text & IFC --> Evidence
-        Evidence --> Select
-        Select --> Direct
-        Direct --> Validate
-    end
-    Input --> Route
-    Select -->|Semantic review when needed| Gemini
-    Evidence --> Gemini
-    Gemini --> Validate
-    Validate --> Answer[Answer + source evidence]
-```
+![Pipeline Architecture](docs/FloorHAWK_Pipeline.png)
 
 Gemini does not invoke every tool or decide every answer. Supported deterministic facts can bypass provider review. Evaluation references are kept outside inference inputs.
 
@@ -70,6 +44,10 @@ Gemini complements domain-specific models by reviewing ambiguous questions and c
 ## Modal
 
 Modal serves the pipeline independently of the laptop, using versioned model storage and resident GPU models that avoid repeated loading between nearby requests. Presenter, judges and public traffic use separate workers and admission state. Presenter uses one warm T4. Judges and public each keep two T4 workers warm and can scale to five, subject to provider quota. Each GPU worker processes one job at a time. Browser concurrency is not equivalent to simultaneous GPU inference capacity. Access control, durable quotas and spending reservations remain server-side.
+
+
+![Modal Example](docs/modal_example.png)
+
 
 ## Codex
 
