@@ -6,7 +6,7 @@ Academic Menaces · STOA — Make Blueprints Talk · Junction2026.
 
 ## Serving release versus candidate
 
-Presenter, judges and public now serve the same frozen source5827eab. Fresh browser checks passed, but no fresh full-development live run was performed. Frozen v3 is the comparable full-development baseline. Cached grouped candidate estimates below are not automatically the production accuracy.
+Presenter, judges and public serve deployment8fce908 with the same frozen inference5827eab. Fresh browser checks passed, but no fresh full-development live run was performed. Frozen v3 is the comparable full-development baseline. Cached grouped candidate estimates below are not automatically the production accuracy.
 
 |Saved run|Correct / valid frozen numeric references|Correct / all development questions|
 |---|---:|---:|
@@ -40,7 +40,7 @@ Matched practical candidate versus baseline:1428rescues,146regressions,6495uncha
 
 Isolated sourcecd04bd6:18/18curated suggestions plus3manual upload checks matched; normal login, two questions on one PNG, replacement by PDF, references clearing, ownership isolation, reload without resubmission, exports and1366×768/1920×1080checks passed. Real fzk IFC geometry:107meshes/11recorded window GUID highlights. All model load counters remained1 on worker77e5f83f9f0a406f9537003517ee62df.
 
-Observed first cold browser query26.46s, worker model initialization7.69s;17subsequent curated queries median8.39s, range7.55–22.54s. These are a small selected run, not p95 or a universal latency guarantee. Server queue/execution timings are stored separately. A newer direct-fixture/resource-telemetry candidate remains under verification.
+Observed first cold browser query26.46s, worker model initialization7.69s;17subsequent curated queries median8.39s, range7.55–22.54s. These are a small selected run, not p95 or a universal latency guarantee. Server queue/execution timings are stored separately. This earlier staging record is historical; the direct-fixture/resource-bound release subsequently passed verification.
 
 ## Provider accounting and provenance
 
@@ -50,9 +50,9 @@ Original predictions, weights, references and split hashes passed preservation c
 
 ## Untouched data status
 
-Frozen LocalCPU evaluation began only after deployment and private submission delivery. Final reference answers remain unopened while inference runs; no tuning is permitted. Coverage/results will be reported separately, not merged with development estimates. Answer-free audit retained6876provisional questions/354groups:1298with no known local custom-training/development overlap and5578CubiCasa questions with unknown4200-plan custom training membership. External pretrained overlap and unknown aliases remain limitations. Do not call the latter certified unseen data.
+Frozen LocalCPU evaluation began only after deployment and private submission delivery. A separate evaluator opened references only after freeze and verified delivery; inference receives none and no tuning is permitted. Coverage/results will be reported separately, not merged with development estimates. Answer-free audit retained6876provisional questions/354groups:1298with no known local custom-training/development overlap and5578CubiCasa questions with unknown4200-plan custom training membership. External pretrained overlap and unknown aliases remain limitations. Do not call the latter certified unseen data.
 
 Reproduce saved-result comparison: `.venv/bin/python -m campaign.report_development`. Scores/row-level records: `results/overnight-20261115/candidate-production-policy/{score.json,rows.jsonl}`; original best estimate: `candidate-pdf-recovery-v3/`; contract: `baseline/contract.json`; source hashes and run paths: `development-report/summary.json`. Browser artifacts remain outside Git under `floorhawk-modal/verification/overnight-candidate/`.
 
 
-Current event deployments passed normal-login checks: [deployment verification](docs/OVERNIGHT_DEPLOYMENT_VERIFICATION.md). Three roles share source/config/frontend and have distinct workers. Latest lifetime reconciliation:722HTTPresponses+1unresolved; partialknown token subtotal2.9772555USD, not billing. Public retained7USDguard is5.75USDreserved/six additional admissions; presenter/judges remain independent.
+Current event deployments passed normal-login checks: [deployment verification](docs/OVERNIGHT_DEPLOYMENT_VERIFICATION.md). Three roles share source/config/frontend and have distinct workers. Latest lifetime reconciliation:722HTTPresponses+1unresolved; partialknown token subtotal2.9772555USD, not billing. Public retained7USDguard is5.75USDreserved/five additional admissions; presenter/judges remain independent.

@@ -1,126 +1,135 @@
-> Current protected presenter and operator commands: [Presenter deployment](docs/PRESENTER_DEPLOYMENT.md). Recording questions/source paths: [Recording guide](docs/RECORDING_GUIDE.md). Public deployment remains unchanged.
+# FloorHAWK
 
-# FloorHAWK — drawing questions with inspectable source evidence
+**Team Academic Menaces · STOA — Make Blueprints Talk · Junction 2026**
 
-**Academic Menaces · STOA — Make Blueprints Talk · Junction 2026**
+FloorHAWK helps engineers, estimators and drawing reviewers ask questions about construction drawings and inspect the source evidence behind the answer. Tiny symbols, rotated labels and model properties are difficult to search manually. The prototype combines specialist vision, text extraction and IFC queries with selective Gemini review, then shows one Result with source-linked evidence. It is a review aid, not a certified measurement or design tool.
 
-Private submission repository: https://github.com/HariPrasanth-SM/floorhawk (kept private; original development repository preserved).
+## Try the protected event demo
 
-Verified event release: `5827eab5e423bae3eb7413a2c773183afa2f60f0`.
-
-|Role|Protected URL|GPU warming|
+|Role|URL|Serving capacity|
 |---|---|---|
-|Presenter|https://sm-hariprasanth--presenter.us-east.modal.run|One resident T4|
-|Judges/company|https://sm-hariprasanth--judges.us-east.modal.run|One separate resident T4|
-|Public|https://sm-hariprasanth--web.us-east.modal.run|Min0/max1 T4|
+|Presenter|https://sm-hariprasanth--presenter.us-east.modal.run|Dedicated warm T4, max1|
+|Judges/company|https://sm-hariprasanth--judges.us-east.modal.run|Separate warm T4, max1|
+|Public audience|https://sm-hariprasanth--web.us-east.modal.run|Min0/max1 T4, bounded visitor queue|
 
-Access codes stay in the operator’s private files. [Event operations and shutdown](docs/EVENT_OPERATIONS.md), [actual browser verification](docs/OVERNIGHT_DEPLOYMENT_VERIFICATION.md), [model/config release manifest](docs/release-manifest.json). Presenter and public URLs were preserved. The public conservative7USD reservation guard currently leaves six additional admissions; use presenter/judges for recording. Warming is billable until disabled.
+Access codes remain in private operator files; no credentials are distributed in this repository. Public inference is protected, not unlimited. Its retained cumulative7USD conservative compute guard currently has5.75USD reserved, leaving five0.25USD admissions; this is separate from rolling visitor limits and is not actual billing. Presenter/judges are independent. Warm resources remain billable until turned off.
 
-Protected public demo: https://sm-hariprasanth--web.us-east.modal.run . Access is required for paid inference. Presentation video: **pending** (no video URL supplied).
+Private submission repository: https://github.com/HariPrasanth-SM/floorhawk . Presentation video: **pending** (no supplied video URL).
 
-The frozen overnight candidate is described in [the campaign checkpoint](docs/OVERNIGHT_PROGRESS.md). Frozen v3 development: **6,641/9,471 numeric references (70.12%)**. The best overnight cached-observation, drawing-group out-of-fold estimate is **7,925/9,471 (83.68%)**, across 9,544 development questions; 73 narrative references remain ungraded. This is development calibration, not untouched accuracy or a fresh end-to-end production measurement. The 85% target has not been achieved.
+Current deployment source: `8fce90834c82935f6180baac8a7071763269b183`; frozen inference base: `5827eab5e423bae3eb7413a2c773183afa2f60f0`. The later correction adds explicit platform CPU/RAM limits only; frontend, inference and model hashes remain frozen. [Release manifest](docs/release-manifest.json) · [Operator commands and rollback](docs/EVENT_OPERATIONS.md) · [Browser verification](docs/OVERNIGHT_DEPLOYMENT_VERIFICATION.md).
 
-Stoa’s drawing-review problem is turning large construction sheets and models into useful, checkable answers without repeatedly searching tiny labels or trusting unsupported quantities. Intended users are engineers, estimators and drawing reviewers who need to inspect the source before accepting an answer.
-
-FloorHAWK is a Python/browser prototype that extracts format-appropriate evidence once per accepted request, answers supported questions with local tools, and selectively asks Gemini to review cumulative evidence and bounded source crops. Cloud event deployments present one Result; independent Local/review outputs remain in diagnostic records. The viewer keeps model output, human corrections and prerecorded ground-truth references separate. It supports exploration and review; an answer is not a verified design or a complete inventory.
+## Working pipeline
 
 ```mermaid
 flowchart LR
-  A[PNG / JPEG / PDF / IFC] --> B[Format-aware extraction]
-  B --> C[Shared source evidence]
-  C --> D[Local answer]
-  C --> E[Optional Gemini review]
-  D --> F[Answer with source evidence]
-  E --> F
+  I[PNG / JPEG / PDF / IFC] --> V[Validate and preserve original]
+  V --> E[Format-aware extraction]
+  E --> B[Shared evidence: coordinates, text, GUIDs, provenance]
+  B --> L[Specialist local answer]
+  B --> G[Selective Gemini review with source context]
+  L --> P[Validated final-answer policy]
+  G --> P
+  P --> R[One Result with evidence and export]
 ```
 
-Components:
+1. Validate bounded file bytes, decoded dimensions and format. Preserve the original; show a lightweight preview immediately. IFC metadata can be answered without waiting for geometry.
+2. Route by format, question and available evidence. Native PDF text/coordinates precede OCR. IFC entity/property queries preserve units and scope. Existing RT-DETR, CubiCasa and the supplied YOLO detector provide supported visual observations.
+3. Build cumulative local evidence once within a request. Numbered regions retain source coordinates and model provenance. A score is a detector score, not calibrated completeness probability.
+4. Use deterministic supported facts directly. For ambiguous supported semantic targets, Gemini may inspect the question, local observations and bounded readable source context. References never enter extraction, routing or provider payloads. Numerical proposals need supporting evidence; counts are not averaged.
+5. Validate status, values, units and evidence IDs, then present one Result. Local and review outputs remain separate internally. Provider failure preserves a supported **Local fallback — Gemini unavailable**; insufficient evidence can abstain.
+6. Display source crops, selected regions and optional GUID-linked IFC geometry. Export an annotated source page/image. Curated reference cards are UI/evaluation data only and disappear when source/question/scope changes.
 
-- **Detectors:** existing RT-DETR windows/doors and CubiCasa room/fixture routes. Class scores are not calibrated probabilities. Large drawing tiles never sum global room/storey heads.
-- **OCR / PDF:** existing CPU OCR reads raster source tiles; native PDF extraction retains page/rotation coordinates. Printed scale ratios alone do not calibrate raster measurements.
-- **IFC:** parsed entities, GUIDs and properties answer supported queries without requiring geometry rendering. Cached geometry is optional viewer context.
-- **Gemini:** optional structured review of shared local evidence, an overview and a bounded selection of source crops. It can disagree or abstain; proposals remain labelled and references are never provided to inference.
-- **Viewer:** preview, pan/zoom, numbered evidence, original-resolution crops, separate answers/review and exports. Replay performs no inference.
-
-## Contributions and deployment
-
-**Codex** implemented and tested adapters, source-coordinate evidence, browser workflows, release packaging and operational checks. Generated code still requires review; a model answer is never a construction certification.
-
-**Gemini** reviews cumulative local observations plus bounded source imagery when semantic interpretation is needed. Deterministic IFC/native-PDF facts and supported specialist detections can be selected without a provider call. Local results remain separate internally; provider failure retains an explicitly labelled local fallback. Evaluation references are kept outside inference.
-
-**Modal** runs Python 3.11 CPU/API containers and isolated resident T4 workers using versioned, checksum-verified external assets. Presenter, judges and public roles share code and model manifests while separating admission, jobs, credentials and queues. Warm workers are billable until warming is disabled. [Deployment](docs/MODAL_DEPLOYMENT.md) and [release/rollback workflow](docs/RELEASE_WORKFLOW.md) document operator controls.
+## Architecture and component roles
 
 ```mermaid
-flowchart LR
-  B[Protected browser] --> A[Session and quota-checked API]
-  A --> J[Durable job and source ownership]
-  J --> W[Role-isolated resident T4 and CPU tools]
-  W --> E[Source-coordinate evidence]
-  E --> R[Specialist result or bounded Gemini review]
-  R --> V[One result, evidence crops and export]
-  M[Versioned model volume] --> W
+flowchart TB
+  B[Browser: upload, question, evidence, export] --> A[Session, validation, quota and idempotency API]
+  A --> J[Durable job state and owned source artifacts]
+  J --> W[Role-isolated resident T4 worker]
+  M[Versioned checksum-verified model Volume] --> W
+  W --> C[CPU: PDF/OCR/IFC parsing]
+  W --> D[GPU: existing specialist detectors/heads]
+  C --> E[Shared evidence bundle]
+  D --> E
+  E --> F[Local policy / bounded Gemini review]
+  F --> J
+  J --> B
 ```
 
-## Attribution and limits
+|Component|Role|Important limitation|
+|---|---|---|
+|RT-DETR|Structural door/window candidates|Domain, scale and instance grouping affect recall|
+|CubiCasa and existing heads|Room/icon/layout evidence and supported counts|Scalar count agreement does not prove localization|
+|Supplied custom YOLO11m|Supported fixtures and corroborating openings|Training identities unavailable; potential CubiCasa overlap|
+|Native PDF / CPU OCR|Printed room labels, values and source-coordinate text|Legends/schedules are not physical room instances|
+|IfcOpenShell|Scoped entities, GUIDs, properties and available quantities|A PDF does not imply access to an associated IFC|
+|Gemini|Selective semantic evidence review|Can fail or be wrong; structured output alone is not truth|
+|Viewer|Pan/zoom, crops, overlays and asynchronous IFC geometry|Never invents missing reference geometry or boxes|
 
-This is a research/event prototype, not a commercially validated measurement or safety tool. Review the source before relying on any count or quantity. Third-party model/code licenses remain applicable; supplied drawing redistribution permission is not established, so drawings and weights are not included in this repository. See [artifact provenance](ARTIFACTS.md), model registry and dependency licenses before reuse. Pretrained/custom training overlap is not fully known. Curated examples, development scores and untouched evaluation must be reported separately. No side-challenge eligibility is guaranteed.
+**Codex** implemented adapters, diagnostics, tests, cache provenance, source packaging and deployment operations. Generated code still requires review. No side-challenge eligibility is guaranteed.
 
-## Quick start
+**Gemini** uses server-side credentials and durable concurrency-safe reservations against the existing100USD authorization. The existing80USD serving envelope is already part of that allowance, not extra money. Old tiny permit/request limits are not the event policy. Retries, timeouts, accounting and kill switches remain; reservations and partial token estimates are not actual billing.
 
-Canonical source is the existing `proofplan/` private Git repository. Restore external dependencies/assets first: [ARTIFACTS.md](ARTIFACTS.md), [.env.example](.env.example). Dataset/model/results/cache/worker paths are configurable; large files, credentials and runtime results are not tracked.
+**Modal** runs explicit Python3.11 cloud images with models loaded directly into resident T4 workers. No cloud worker depends on the laptop bridge. Presenter, judges and public share one versioned backend/frontend but separate admission, jobs, session credentials and GPU queues. GPU workers are bounded at2CPU cores/8GiB and max1per role; API workers at1core/4GiB. Warm presenter/judges workers are intentionally billable.
 
-From the parent directory, use one host worker (leave an already-running one alone):
+Detailed [architecture, routing, preprocessing, cache and security](docs/architecture.md). [Model registry](MODEL_REGISTRY.json) and [asset restoration/licensing](ARTIFACTS.md) describe external weights and provenance.
+
+## Measured results and limits
+
+The9,544-question quick set is **DEVELOPMENT**, with448drawing/project groups and9,471valid numeric references.73narrative text references remain ungraded under the frozen rubric. Counts require exact numerical agreement; quantities keep the fixed unit normalization/2% tolerance. Abstentions, unsupported outputs and execution failures stay in the primary denominator.
+
+|Saved development result|Correct / valid numeric references|
+|---|---:|
+|Frozen v3 baseline|6641/9471 (70.12%)|
+|Local specialist candidate|7205/9471 (76.07%)|
+|Best cached, drawing-group out-of-fold estimate|7925/9471 (83.68%)|
+|Practical serving-policy estimate|7923/9471 (83.66%)|
+
+**The85% target was not reached.** Cached development comparisons are not fresh full live measurements or held-out generalization. Practical policy answer coverage9179/9544(96.18%), countMAE0.484050/signedbias-0.250121 on8276valid answered counts. [Current analytics](SOLUTION_ANALYTICS.md) reports denominators, categories, regressions and final-evaluation status separately.
+
+Fresh normal-login verification: all18curated suggestions plus manual PNG/PDF/IFC uploads passed on the frozen inference release. IFC fzk source produced107actual meshes with11recorded window GUID highlights, including manual upload. Resource-bound canary repeated18/18. Each final role then passed a fresh GPU-backed door question; models loaded once. These curated checks are not benchmark accuracy. New browser checks used0provider calls; a new successful semantic review on each serving role is not claimed.
+
+Selected staging timing: first cold browser query27.67s included an injected polling failure;17warm requests median5.26s/range4.64–7.55s. Final resource-bound spot checks: presenter9.40s,judges14.19s,public32.99s(cold+polling fault). No fixed latency/p95 promise or speed claim from cached retrieval. Raw timing and device evidence: [deployment verification](docs/OVERNIGHT_DEPLOYMENT_VERIFICATION.md).
+
+Remaining final candidates:6,876questions,354sources.1,298PDFquestions have no known local training/development overlap;5,578CubiCasa questions have unknown custom-training membership. External pretrained overlap remains possible. Frozen LocalCPU evaluation is separate from serving Hybrid and may have partial coverage. No final-reference feedback is used for tuning.
+
+## Operator quick start
+
+Run from the canonical `proofplan/` directory after restoring external assets and dependencies:
+
+```bash
+.venv/bin/python deploy/modal/presenter_ops.py warm
+.venv/bin/python deploy/modal/presenter_ops.py ready
+.venv/bin/python deploy/modal/presenter_ops.py status --admission --budget
+.venv/bin/python deploy/modal/presenter_ops.py warm --app floorhawk-judges
+# Stop permanent warming (queries may still cold-start):
+.venv/bin/python deploy/modal/presenter_ops.py off
+.venv/bin/python deploy/modal/presenter_ops.py off --app floorhawk-judges
+```
+
+Full shutdown, protected access file paths, deployment, backend-only updates and pinned rollback: [EVENT_OPERATIONS.md](docs/EVENT_OPERATIONS.md). Do not expose the laptop worker publicly.
+
+Preserved laptop launchers, from the parent directory:
 
 ```bash
 bash proofplan/start_host_worker_v2.sh
-```
-
-Start the shared live UI (actually tested on this port):
-
-```bash
 bash proofplan/start_live.sh --port 8777
-```
-
-Open http://127.0.0.1:8777 . **Gemini assistance defaults OFF.** OFF makes no provider calls. ON saves and shows Local first, then shows Hybrid separately using the same evidence. The mode is captured per submitted request; changing the toggle applies to the next request. A new document clears stale evidence; if a job is pending, it finishes separately before the next Ask is enabled. Unsupported/errors can be retried without reloading the page.
-
-Configure `PROOFPLAN_GEMINI_KEY_FILE` server-side to your private key file; never put its value in source/browser/logs. Restore the existing `PROOFPLAN_BUDGET_LEDGER`; never create a fresh allowance. Existing lifetime1,000-request/$10 reservation caps, rate controls, single GPU queue and resource supervision remain. No key/account is needed for Local/replay.
-
-Replay (preserved compatible launcher):
-
-```bash
+# Separate recorded inspection, no inference/API calls:
 bash proofplan/start_demo_v3.sh --replay --include-failures --port 8774
 ```
 
-Open http://127.0.0.1:8774 . All recorded outcomes remain inspectable. The original default benchmark policy is unchanged via `start_demo_v3.sh --mode local`; the new live launcher enables the bounded large-drawing/paired adapters, with requests still Local by default.
+Use one host worker; an already-running user worker should be preserved. Laptop Local/replay require no provider credentials. Existing laptop routing/default benchmark behavior remains separately preserved; event cloud policy is configured in its immutable release. Environment path placeholders: [.env.example](.env.example). Keys, access codes and the existing lifetime ledger remain external; never create an empty ledger to evade limits.
 
-## Large drawings and limits
+## Large drawings and evidence
 
-Original upload bytes remain retained. A reduced preview supplies display/global context, **not the sole detector/OCR input** for large drawings. The live large-image path uses1536px source tiles with20% overlap, sequential detector calls, class-aware overlap suppression and text+location OCR deduplication. Source offsets map evidence to the original; viewer boxes map to the preview and evidence crops read original pixels.
+Retain original pixels and use a reduced preview only for display/context. The optional isolated large-sheet path uses overlapping source tiles, original-coordinate mapping and class/location deduplication; it never sums global room/storey heads. Partial coverage is not a total count. File/decode/tile/time limits and decompression-bomb protection remain. The frozen CPU final-evaluation path has its own explicit8MP bound. Full-sheet large-PDF performance is not established. Tiny symbols, faint linework, rotated text and scope ambiguity remain limitations. Printed raster scale alone does not establish pixel calibration; floor area is not baseboard length.
 
-Limits include20MB raster upload,100MP/32000px source limits, estimated decoded-memory bound900MiB, one decode/local worker,64 detector tiles/150s, and12 distributed OCR tiles/90s. The existing model preprocessing still applies within each tile. No blank-region filtering removes building regions. Host-telemetry loss stops owned work safely; it is not treated as a successful completed sheet. Partial coverage is explicit: a partial candidate count is **not** a sheet total; unsupported global room/storey aggregation abstains. OCR/crop selection is incomplete. Tiny labels, faint linework, symbols outside the pretrained domain and boundary fragments may fail. Baseboard length requires perimeter/openings/scope/units; floor area is not baseboard length.
+## Reproduce and share responsibly
 
-## Measured scope
+- [Morning handoff](MORNING_HANDOFF.md), [status](STATUS.md), [development analysis](docs/OVERNIGHT_DEVELOPMENT.md), [recording questions/files](docs/RECORDING_GUIDE.md).
+- Regenerate saved development analytics: `.venv/bin/python -m campaign.report_development`.
+- [Release/deployment workflow](docs/RELEASE_WORKFLOW.md), [artifact manifest/restoration](ARTIFACTS.md), [verification](docs/OVERNIGHT_DEPLOYMENT_VERIFICATION.md).
+- Original datasets, weights, predictions, corrected splits and budget history remain external and unchanged. Source exports exclude secrets, agent transcripts, private drawings and bulk artifacts. Submission Git stays private.
+- Acknowledgments: STOA/Junction challenge data, CubiCasa5K, supplied custom detector authors, RT-DETR/Ultralytics, OCR/PDF/IfcOpenShell ecosystem, Google Gemini and Modal. Model/code licenses retain their original terms, including CubiCasa noncommercial restrictions and applicable UltralyticsAGPL requirements. No blanket license grants redistribution/commercial rights to supplied drawings/weights. Review upstream provenance before reuse.
 
-- Frozen v3 **numeric DEVELOPMENT** baseline:6,641/9,471 (70.12%),9,544 total questions. Unknown pretrained overlap; no generalization or localization-proof claim.
-- Latest16-case difficult diagnostic: Local and Hybrid both4/13 numeric,3 narrative text cases ungraded; no promotion or full-dataset improvement claim.
-- New company drawings are **unscored exploratory development**, not test data. Outcomes, coverage, device evidence, costs and untested cases are in [samples smoke report](docs/samples-smoke.md). Agreement is not proof of correctness. Their source/pixel groups are excluded from future untouched evaluation.
-
-No unsupported cold-speed claim is made from cached timings. Modal remains a training/deployment plan, **not deployed**; no training/new model/Modal deployment occurred in this iteration.
-
-[Current analytics](SOLUTION_ANALYTICS.md) · [Demo guide](docs/demo.md) · [Status](docs/status.md) · [Evaluation discipline](docs/evaluation.md) · [Deployment preparation](docs/deployment.md) · [Verification](docs/verification.md) · [Version history](reports/history/iteration60.md).
-
-## Agile candidate, not promoted
-
-See [first-iteration measurements and limits](docs/agile-hour1.md). The supplied custom YOLO improves this32-question diagnostic candidate from18/28 to21/28 numeric; possible training overlap prevents a generalization claim. Interrupted Hybrid regressed on the matched subset. The existing default policy remains. Hybrid-first inspection, Local-output checkbox, clear controls and private diagnostic ZIP export are available. Current workspace instructions require local-only inference; no further Gemini experiment is running.
-
-## FloorHAWK frontend
-
-[Frontend behavior and verified launch commands](docs/floorhawk-ui.md). Hybrid selects its own cited evidence; overview-only replies are labelled without inventing instances. Top Export ZIP includes the drawing/question/separate outcomes and evidence metadata. Diagnostics is hidden unless launched with `--diagnostics`. Existing proofplan/ paths remain compatible.
-
-## Protected Local cloud demo
-
-https://sm-hariprasanth--web.us-east.modal.run — event access code required. Real T4 inference/browser checks passed on2PNGimages/3Localquestions; these are unscored smokes. Gemini disabled. Deployed release966248c preserves the frontend snapshot and stable URL. [Deployment/operator guide](docs/MODAL_DEPLOYMENT.md), [verification and limits](docs/MODAL_VERIFICATION.md). PDF/IFC/large-sheet cloud paths remain untested.
-
-## Unified Hybrid release — current
-
-Same stable URL now serves oneResult from sharedLocal+Gemini. Sourcea44e94f; Local rollback966248c preserved.66tests and normal-login PNG/PDF/IFCsmokes pass; these do not alter benchmark accuracy. Budget100USDtotal includinghistory, requestcap1000unchanged;30prepaidcloudpermits are part of the canonical ledger. [Current behavior, verification, operator commands and limits](docs/UI_HYBRID_RELEASE.md). Earlier Local-only/Gemini-disabled sections are historical.
+Earlier release notes are preserved in [history](reports/history/2026-11-15-pre-final-readme.md). This event prototype is not commercially validated or a substitute for engineering judgment.

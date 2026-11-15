@@ -1,5 +1,5 @@
 {
-  "source_commit": "4c3d164187250d3f093cff55c6c8b8610b6ae3fa",
+  "source_commit": "4a632e4d446506dbb32bf017215858aa948dba13",
   "repository": "private FloorHAWK submission",
   "files": {
     ".env.example": {
@@ -15,8 +15,8 @@
       "bytes": 1503
     },
     "ARTIFACTS.md": {
-      "sha256": "3a90565c0bfe7f7af2e6a293b1ffdacb158d5340dba302ea8147962127d47526",
-      "bytes": 3953
+      "sha256": "36c650617cfbfe35ba601174b68d81e88afd830e1733c8a7ea5b02cf162e6540",
+      "bytes": 4998
     },
     "MODEL_REGISTRY.json": {
       "sha256": "fb9510511beffbd8ddae0ef3e447df06e6714a85ae6fa290727f1e94a60f23ff",
@@ -27,12 +27,12 @@
       "bytes": 7397
     },
     "README.md": {
-      "sha256": "15260caf455a925382454c9e64f525b843b19dacb422ac7e1d65dff271f1ee22",
-      "bytes": 12059
+      "sha256": "fca83855392b55891ca1b83c079768ae3c93317582992c143a9077ebd097e3d6",
+      "bytes": 12195
     },
     "SOLUTION_ANALYTICS.md": {
-      "sha256": "8d41ca2bdfd53929902760f6ad9957b24962f2bca1b1a0a96c01ac4bc9156d5c",
-      "bytes": 6108
+      "sha256": "42fef98a19ef32f7a3dbe4531a4ff6fa5943ad456b183f6a792bffa098e9be85",
+      "bytes": 6216
     },
     "STATUS.md": {
       "sha256": "df6db7cd6b0141caf4b6c44ddd5f785751e8b57ed8d4455e7f78a2207d6e2c93",
@@ -177,6 +177,10 @@
     "campaign/report_development.py": {
       "sha256": "db821c7ce6bc4804eee8d6e6032acbd7f771e251dea97cff62f1340e842b9df1",
       "bytes": 5038
+    },
+    "campaign/report_final.py": {
+      "sha256": "a153fd64850e2420474de7fbfac63a795f8c62c6d0fc35b4c7b4ea52f12353a3",
+      "bytes": 6163
     },
     "campaign/review.py": {
       "sha256": "d63b0db68abb82fc8e5aeb2115a547790381be520a03a291a7c9ea90d2506d02",
@@ -390,9 +394,13 @@
       "sha256": "9411912ae32790480a247e8e4a6c99470a9b15d9e5a80d77b16c6f2fbc91fe5f",
       "bytes": 6166
     },
+    "docs/GALLERY_OVERNIGHT_VERIFICATION.md": {
+      "sha256": "a1f50f514baf21740f16c6e5f94a1976a657fe7bc975a98b76c8f0ce0c3a12b8",
+      "bytes": 3157
+    },
     "docs/MODAL_DEPLOYMENT.md": {
-      "sha256": "5e4953ac101d5416cccab3f559c75d02ef4aedc53753811f25bf5c7ccee81360",
-      "bytes": 5744
+      "sha256": "d8578b3652b552d2c2146361cb81f447c044e330092f7dc9775fc877df30b28a",
+      "bytes": 5775
     },
     "docs/MODAL_VERIFICATION.md": {
       "sha256": "61795dc17b3d9e41a69d82e53a745b477fa18cfc4cb28cea15f2bc195682e7ec",
@@ -423,8 +431,8 @@
       "bytes": 3207
     },
     "docs/RELEASE_WORKFLOW.md": {
-      "sha256": "7c2d53d9c0cb5d05ba92410cfe560de744d6162eea16d5cb1cfd1b593205d8f3",
-      "bytes": 5846
+      "sha256": "6d4b0a6309f9a24c2b459ccb032340a0c5ff164f9acc770cdb87b08016a8ac09",
+      "bytes": 5877
     },
     "docs/STATUS.md": {
       "sha256": "aad9ff4f35483871dcf58006abcada85f362f226b4bb4aaa5d1d22697fbd1d18",
@@ -455,8 +463,8 @@
       "bytes": 5099
     },
     "docs/demo.md": {
-      "sha256": "c603ba9abfdb37d2b21e6b75fcdca5fbb8484814d273a508808c1c715e110a0e",
-      "bytes": 7086
+      "sha256": "7338926cf60d66619e53bc1de1a4cea20a3358f0d6297a14ec71b9358148f4a9",
+      "bytes": 7111
     },
     "docs/deployment.md": {
       "sha256": "1d520274129cb5836dbded89e94a26150b350c47d356058eba663552406647ff",
@@ -465,6 +473,10 @@
     "docs/evaluation.md": {
       "sha256": "b84d5ae01c9229f4c396f1c0fcb8cab9358a86f18039605185a55f37e82456d2",
       "bytes": 2859
+    },
+    "docs/event-verification.json": {
+      "sha256": "e3f2acf119feaffacd9522ff8864a05409d82dc0a94f28eccdd14f1569041d6c",
+      "bytes": 2327
     },
     "docs/floorhawk-ui.md": {
       "sha256": "277ccc208121d20a12d8b30c9c8ff5b434a09af9fc0ddfd2fdaca4d218d2619c",
@@ -665,6 +677,10 @@
     "qa_visualize.py": {
       "sha256": "6147c36f25083f37b90cdeecd68751da77f13ffbd8abd90f7c753f0348b3d9d9",
       "bytes": 3194
+    },
+    "reports/history/2026-11-15-pre-final-readme.md": {
+      "sha256": "15260caf455a925382454c9e64f525b843b19dacb422ac7e1d65dff271f1ee22",
+      "bytes": 12059
     },
     "reports/history/2026-11-15-pre-overnight-analytics.md": {
       "sha256": "8a598f8e2e8aa7242a7aa623172de6f6e2ca5ffff0fe57d6861a94e95288acff",

@@ -1,0 +1,81 @@
+{
+  "deployment_commit": "8fce90834c82935f6180baac8a7071763269b183",
+  "frozen_inference_commit": "5827eab5e423bae3eb7413a2c773183afa2f60f0",
+  "source_report_sha256": "31df49ec1ea4229989d811a1558a045f74bb0b551d945a697e85ce1bd9a12feb",
+  "curated_matches": 18,
+  "curated_questions": 18,
+  "one_worker": true,
+  "model_load_counts": {
+    "cubicasa": 1,
+    "rtdetr": 1,
+    "ocr": 1,
+    "custom_yolo": 1
+  },
+  "actual_gpu_executions": [
+    {
+      "model": "RT-DETR-L",
+      "device": "cuda:0",
+      "observed_tensor_devices": [
+        "cuda:0"
+      ],
+      "worker_id": "694c1abbe7754e0ab590fa94c7b2e6a5",
+      "cache_hit": false,
+      "inference_seconds": null,
+      "peak_gpu_memory_bytes": 521026560,
+      "gpu_used_mib_after": 734,
+      "sampled_gpu_utilization_after": 41
+    },
+    {
+      "model": "Custom YOLO11m",
+      "device": "cuda:0",
+      "observed_tensor_devices": [
+        "cuda:0"
+      ],
+      "worker_id": "694c1abbe7754e0ab590fa94c7b2e6a5",
+      "cache_hit": false,
+      "inference_seconds": 0.3849175139999996,
+      "peak_gpu_memory_bytes": 529850880,
+      "gpu_used_mib_after": 734,
+      "sampled_gpu_utilization_after": 33
+    },
+    {
+      "model": "RT-DETR-L",
+      "device": "cuda:0",
+      "observed_tensor_devices": [
+        "cuda:0"
+      ],
+      "worker_id": "694c1abbe7754e0ab590fa94c7b2e6a5",
+      "cache_hit": false,
+      "inference_seconds": null,
+      "peak_gpu_memory_bytes": 521588224,
+      "gpu_used_mib_after": 736,
+      "sampled_gpu_utilization_after": 38
+    },
+    {
+      "model": "Custom YOLO11m",
+      "device": "cuda:0",
+      "observed_tensor_devices": [
+        "cuda:0"
+      ],
+      "worker_id": "694c1abbe7754e0ab590fa94c7b2e6a5",
+      "cache_hit": false,
+      "inference_seconds": 0.10316779100000417,
+      "peak_gpu_memory_bytes": 516607488,
+      "gpu_used_mib_after": 736,
+      "sampled_gpu_utilization_after": 39
+    }
+  ],
+  "ifc": {
+    "meshes": 107,
+    "highlighted_guids": 11
+  },
+  "provider_fallback": {
+    "status": "blocked",
+    "provider_attempts": 0,
+    "local_answer": 0,
+    "display_label": "Local fallback \u2014 Gemini unavailable"
+  },
+  "normal_login": true,
+  "browser_errors": [],
+  "limits": "Sampled GPU activity is not an instantaneous utilization guarantee. Curated matches are not held-out accuracy."
+}

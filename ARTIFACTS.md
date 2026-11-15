@@ -13,6 +13,16 @@ mkdir -p external/custom-yolo
 .venv/bin/modal volume get floorhawk-assets /campaign-assets-v1/floorplan_yolo11m.pt external/custom-yolo/floorplan_yolo11m.pt
 ```
 
+Restore the exact previously uploaded standard manifest directly from the owning workspace, without rebuilding or uploading weights:
+
+```bash
+mkdir -p ../floorhawk-modal
+.venv/bin/modal volume get floorhawk-assets /a18a52dae0e7-3ec800c811f2/assets.json ../floorhawk-modal/assets.json
+.venv/bin/modal volume get floorhawk-assets /campaign-release-assets/568decc669d2ce00ed71f9f0cd0345dfedda5f2302293acb9d7777e0333c0c69/selector.json external/selector.json
+```
+
+Standard manifest SHA256: `46b40fe74c1877a7127a082893038bac78c4f45f1e9af488f5d189f702fe84dc`. The standard manifest contains only the28standard assets; the separately versioned custom checkpoint/selector are additionally required by the frozen event config. The old `assets.py` omitted-assets note concerns its earlier base release, not the current extra-assets registry. Existing active asset bytes must not be overwritten. Gallery restoration requires the owner's protected source/geometry resources and existing access secrets; no source redistribution permission is granted here.
+
 Verify the recorded checksum before loading. The other28assets remain under the recorded version directory. Modal Volume access requires the owning workspace; no credentials are bundled. Six protected gallery drawings and source-matched IFC GLB display assets remain outside Git; redistribution permission is not established. Do not package those into a public code archive. Restore the same monetary authority/history rather than creating an empty ledger on another machine.
 
 No datasets, weights, caches, generated geometry, bulk predictions, SQLite databases, credentials or transcripts are tracked. Existing locations remain in place. Set paths using `.env.example` in the server shell; no asset relocation is necessary.

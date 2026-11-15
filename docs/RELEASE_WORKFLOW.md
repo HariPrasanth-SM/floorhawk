@@ -1,4 +1,4 @@
-# Current event release5827eab
+# Current event deployment8fce908 — frozen inference5827eab
 
 The current actual workflow is [event operations](EVENT_OPERATIONS.md), with [verified deployment results](OVERNIGHT_DEPLOYMENT_VERIFICATION.md) and [release/model manifest](release-manifest.json). All roles use the same source/config/frontend, separate admission/jobs/GPU workers, and the shared80USD provider envelope already inside the100USD authorization. Old permit/1000request descriptions below are historical and do not govern the new event workers. Presenter/judges warming remains billable; public retains its7USD compute guard.
 
