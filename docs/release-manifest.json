@@ -1,0 +1,58 @@
+{
+  "source_commit": "5827eab5e423bae3eb7413a2c773183afa2f60f0",
+  "release_manifest_sha256": "9f337ae0c15caff3e94b68511c897e191eb5d9d7959d87aced5b1c945169437f",
+  "frontend_sha256": "a111edce02bc2803837609cf4b15bfc19d3ee1e9ff2f003826aa2a2c49aafae8",
+  "configuration_sha256": "016a6169eebbc34f851c60ebd564ff753a506a8ffbf561211e9fee099e35829c",
+  "standard_asset_version": "a18a52dae0e7-3ec800c811f2",
+  "standard_assets_manifest_sha256": "46b40fe74c1877a7127a082893038bac78c4f45f1e9af488f5d189f702fe84dc",
+  "custom_checkpoint_sha256": "95fd78b75b72f50963c03d710dbd38b9c7259e21e141c019f58ab7fbb57e54ea",
+  "selector_sha256": "568decc669d2ce00ed71f9f0cd0345dfedda5f2302293acb9d7777e0333c0c69",
+  "api_contract": "floorhawk.jobs.v1",
+  "time": "2026-11-15T06:03:25.829652+02:00",
+  "roles": {
+    "presenter": {
+      "url": "https://sm-hariprasanth--presenter.us-east.modal.run",
+      "browser_passed": true,
+      "worker_id": "71da5a9cf6a74737aafe3a3f8052a661",
+      "curated_questions": 18,
+      "curated_correct": 18,
+      "manual_upload_questions": 4,
+      "provider_attempts": 0,
+      "browser_report_sha256": "40d8112ef0fbe165ffb72c20de495da872c778b9fec4978284df005c0f818c71",
+      "warm_min": 1,
+      "gpu_max": 1
+    },
+    "judges": {
+      "url": "https://sm-hariprasanth--judges.us-east.modal.run",
+      "browser_passed": true,
+      "worker_id": "c89382aee18c4b9baefa7013505663ad",
+      "curated_questions": 12,
+      "curated_correct": 12,
+      "manual_upload_questions": 4,
+      "provider_attempts": 0,
+      "browser_report_sha256": "c2a9800cfceb3ab230ae0ea51c9c77a7453c55eab3f7a16fc83739ac9e19d1c9",
+      "warm_min": 1,
+      "gpu_max": 1
+    },
+    "public": {
+      "url": "https://sm-hariprasanth--web.us-east.modal.run",
+      "browser_passed": true,
+      "worker_id": "67f7e2afcaa04b49ba13caabd4c77e88",
+      "curated_questions": 1,
+      "curated_correct": 1,
+      "manual_upload_questions": 0,
+      "provider_attempts": 0,
+      "browser_report_sha256": "83778c5f996ce74d9000002c47bcdf8094ea84ddbdeccacf8e482bd87165b753",
+      "warm_min": 0,
+      "gpu_max": 1
+    }
+  },
+  "limits": [
+    "Curated checks are not held-out accuracy.",
+    "No successful new semantic cloud review is claimed from these provider-free browser checks; preflight/provider variants were verified earlier.",
+    "Public conservative7USD cumulative compute reservation guard retained, now5.50USD: six additional0.25USD admissions available. This is not actual Modal billing.",
+    "Public20session check used authenticated browsing/gallery GETs, not20GPU jobs.",
+    "Actual provider billing and Modal invoice unavailable; reservations/token subtotal differ.",
+    "Full queue exhaustion and deliberate worker-crash recovery were not injected in serving apps; lock recovery remains fail-closed manual."
+  ]
+}

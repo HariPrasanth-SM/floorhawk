@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "approved_by_user": "2026-11-14",
+  "runtime_seconds_max": 21600,
+  "resources": {
+    "mode": "monitored_limits_not_absolute_system_guarantee",
+    "target_system_cpu_percent": 65,
+    "target_system_ram_used_percent": 65,
+    "target_system_gpu_memory_percent": 65,
+    "pause_new_jobs_at_percent": 72,
+    "cancel_owned_work_at_percent": 78,
+    "resume_below_percent": 60,
+    "sample_interval_seconds": 1,
+    "recovery_seconds": 15,
+    "gpu_inference_concurrency": 1,
+    "gpu_batch_size": 1,
+    "cpu_worker_initial_max": 2,
+    "safety_floor_free_disk_gib": 15,
+    "stop_if_telemetry_unavailable": true,
+    "notes": "GPU utilization is sampled activity, not a hard allocatable quota. Short spikes can exceed 80%. CPU/cgroup/RAM constraints apply only to owned workloads. Monitor total machine use; never kill unrelated processes."
+  },
+  "gemini": {
+    "enabled_default": false,
+    "api_requests_max": 100,
+    "estimated_cost_usd_max": 5.0,
+    "concurrency": 1,
+    "maximum_requests_per_minute": 6,
+    "maximum_attempts_per_operation": 2,
+    "paired_evaluation_questions": 40,
+    "all_http_calls_count_toward_budget": true,
+    "budget_ledger_persistent": true,
+    "stop_on_unknown_pricing": true,
+    "full_dataset_cloud_run_authorized": false,
+    "automatic_project_cap_increase": false,
+    "notes": "One shared allowance for auth, listing, token counting, uploads, generation, retries, evaluation and live tests. Estimate is not a provider billing guarantee. No per-process budget reset."
+  },
+  "evaluation": {
+    "use_existing_split": "proofplan/benchmarks/qa-v3",
+    "quick_role": "development",
+    "holdout_role": "reserved; audit current local membership",
+    "full_role": "deferred",
+    "cloud_only_role": "interface_only_deferred"
+  },
+  "replay": {
+    "network_calls_allowed": false,
+    "model_inference_allowed": false,
+    "default_show_failures": false,
+    "show_partial_only_if_rubric_labelled": true,
+    "show_replay_banner": true
+  }
+}

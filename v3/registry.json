@@ -1,0 +1,39 @@
+{
+  "version": "v3",
+  "selected": {
+    "structural": "RT-DETR-L author1024 + class-aware score/containment filters",
+    "fixtures": "CubiCasa1024 one rotation",
+    "bedroom": "native semantics + per-room observed-label refinement",
+    "other_rooms": "weak count-supervised joint room-role head",
+    "showers_and_baths": "weak count-supervised coarse bathing-room proposals + bathtub instances",
+    "storeys": "weak count-supervised ink-layout region proposals",
+    "PDF": "native text/areas/schedules + labelled-legend compound vectors, anchored cropped RT for unresolved openings",
+    "IFC": "existing explicit properties/quantities"
+  },
+  "weights": {
+    "external/cubicasa-model.pkl": "dd20b4e1bf1d670f2125107b079df06958b1ccd36e49a464ab739aeb00b8e7a2",
+    "external/rtdetr/rtdetr_l_autoresearch_60ep.pt": "7c86051cc9f620f119ad16ee5c30a7c4893871ec8684897eac02e996d3307506",
+    "external/v3-room-model/calibration.json": "00306f545a7545f09b79c9fb8d647aa255de077f41481197629565990b1c31cf",
+    "external/v3-wash-model/calibration.json": "7fd8afbbe6942177f3ff33b285da8ca27543680587e94106f926bfbd3fa08412",
+    "external/v3-layout-model/calibration.json": "95bbabef2550f14322749018bacf2337b1768805548be0b1d3d0efa5e4ab43fe"
+  },
+  "training": "128 train-candidate drawings; group/byte/pixel disjoint from quick and reserved inputs; internal group-separated validation. No target spatial annotations.",
+  "limits": "Development-selected. Unknown pretrained overlap. No localization precision/recall claim. Coarse washing-region boxes are support regions.",
+  "rejected_trials": [
+    "RT1536",
+    "overlapping RT tiles",
+    "two/four rotation fixture alternatives",
+    "simple weak box calibration",
+    "cross-model box calibration (not promoted)",
+    "broad stronger cloud inventory and blanket target review"
+  ],
+  "cloud": {
+    "model": "gemini-3.1-flash-lite",
+    "batch_scope": "frozen40 paired only",
+    "global_caps": {
+      "requests": 1000,
+      "estimated_usd": 10
+    },
+    "ledger_preserved": true
+  }
+}

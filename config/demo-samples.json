@@ -1,0 +1,23 @@
+[
+  {
+    "id": "window-000",
+    "image": "data/cubicasa5k/colorful-10052.png",
+    "question": "How many windows are shown on this floor plan?",
+    "image_sha256": "7827869a473a59bfbbc6560bf00ed3849de6b9dc59eab7b9f8dd005069f63375",
+    "credit": "CubiCasa5K (c) 2019 CubiCasa; Kalervo et al., SCIA 2019; CC BY-NC-SA 4.0"
+  },
+  {
+    "id": "window-001",
+    "image": "data/cubicasa5k/colorful-10062.png",
+    "question": "How many windows are shown on this floor plan?",
+    "image_sha256": "30e7b6f96cadbec23e84d134444cc04f5d5635cb3d6977f6aa4e80fd48a4229a",
+    "credit": "CubiCasa5K (c) 2019 CubiCasa; Kalervo et al., SCIA 2019; CC BY-NC-SA 4.0"
+  },
+  {
+    "id": "window-002",
+    "image": "data/cubicasa5k/colorful-10106.png",
+    "question": "How many windows are shown on this floor plan?",
+    "image_sha256": "eb0cc8a11c007023fe3a4a69df5fe52878d108b6052482656f0738c241f82f38",
+    "credit": "CubiCasa5K (c) 2019 CubiCasa; Kalervo et al., SCIA 2019; CC BY-NC-SA 4.0"
+  }
+]

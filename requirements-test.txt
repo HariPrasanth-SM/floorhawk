@@ -1,0 +1,2 @@
+# Optional browser verification only; the app uses the existing inference requirements and Python stdlib.
+playwright==1.51.0

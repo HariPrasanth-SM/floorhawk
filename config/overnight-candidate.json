@@ -1,0 +1,37 @@
+{
+  "version": "overnight-production-candidate-v1",
+  "custom_weight_sha256": "95fd78b75b72f50963c03d710dbd38b9c7259e21e141c019f58ab7fbb57e54ea",
+  "targets": {
+    "sink": {
+      "confidence": 0.4,
+      "iou": 0.5
+    },
+    "toilet_fixture": {
+      "confidence": 0.4,
+      "iou": 0.7
+    },
+    "shower_bath": {
+      "confidence": 0.25,
+      "iou": 0.5
+    }
+  },
+  "ensemble": {
+    "door": "corroborated"
+  },
+  "review_model": "gemini-3-flash-preview",
+  "semantic_review_targets": [
+    "bedroom",
+    "kitchen",
+    "bathroom",
+    "wc_room",
+    "sauna",
+    "balcony",
+    "storey"
+  ],
+  "reason": "Full development grouped validation; keep fast structural specialists because extra opening selector gained only2of9471questions",
+  "native_pdf_prefixed_ids": true,
+  "native_pdf_closed_areas": true,
+  "large_drawings_feature_gate": "existing bounded path; new CPU tile variant not promoted",
+  "selector_sha256": "568decc669d2ce00ed71f9f0cd0345dfedda5f2302293acb9d7777e0333c0c69",
+  "selector_asset": "campaign-release-assets/568decc669d2ce00ed71f9f0cd0345dfedda5f2302293acb9d7777e0333c0c69/selector.json"
+}

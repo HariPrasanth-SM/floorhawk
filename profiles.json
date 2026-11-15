@@ -1,0 +1,6 @@
+{
+ "baseline": {"imgsz":640,"conf":0.25,"iou":0.45,"tile_size":0,"overlap":0,"count_classes":["window","bay_window","blind_window"]},
+ "diagnostic": {"imgsz":640,"conf":0.25,"candidate_conf":0.01,"iou":0.45,"tile_size":0,"overlap":0,"count_classes":["window"]},
+ "hires": {"imgsz":1280,"conf":0.10,"iou":0.45,"tile_size":0,"overlap":0,"count_classes":["window"]},
+ "tiled": {"imgsz":1024,"conf":0.10,"iou":0.45,"tile_size":1024,"overlap":256,"cross_tile_iou":0.45,"count_classes":["window"]}
+}

@@ -1,0 +1,13 @@
+# Deployment preparation — no public deployment
+
+Current HTTP server binds localhost and is a development application. No laptop worker is exposed. Before remote deployment, add authenticated TLS ingress, authorization, per-user upload quotas, durable storage/retention, request cancellation and a private authenticated worker tunnel. Keep provider key server-side. The localhost-only worker URL check is intentional; do not remove it to publish a laptop endpoint.
+
+Source and dependencies live in Git; datasets, pinned models, existing runtime results, feature caches, immutable evidence and GLB caches are externally mounted. Configure DATASET/MODEL/RESULTS/CACHE roots and worker endpoint as documented in `.env.example`. Keep one GPU queue and existing resource supervision. A .venv must be restored for the target platform; do not archive system Python or copy GPU drivers.
+
+**Lifetime budget ledger is independent of movable results/cache roots.** Restore the SAME existing Gemini ledger and cloud-disabled sentinel; point PROOFPLAN_BUDGET_LEDGER at it. A missing default ledger fails closed instead of creating a fresh allowance. Do not initialize a new ledger to gain budget. Persistent atomic reservations and failed/ambiguous costs survive restarts. This iteration did not reset or raise1,000/$10 lifetime caps. Configuring a different results root does not move/reset this ledger.
+
+Existing benchmark/replay manifests contain private evaluation references and remain external; restoring them is an offline admin action. Live upload/inference accepts only source/question/task evidence, never reference labels. Geometry conversion is CPU/cancellable and independent of inference; reuse existing source-hashed caches.
+
+Storage can later be an authorized private object store or Drive folder after license/retention review. No account credentials, promo codes or unreviewed checkpoint refs belong in Git; no archive was uploaded in this iteration. Official third-party URLs plus SHA256/revision are preferred. Custom calibration archive is allowlisted and separate. Public/company data licenses and PyMuPDF/Ultralytics/CubiCasa obligations require review; no permissive blanket license is assigned.
+
+Private GitHub source is verified at https://github.com/HariPrasanth-SM/proofplan-junction-2026. Only main was pushed; no checkpoint refs or assets. Remaining blockers: complete external artifact restoration bundle; production ingress/auth/storage; manual final-evaluation provenance review; semantic text rubric for narrative references. These are not papered over with invented hosted URLs or performance claims.

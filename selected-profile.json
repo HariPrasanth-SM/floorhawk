@@ -1,0 +1,17 @@
+{
+  "profile": "tiled",
+  "settings": {
+    "imgsz": 1024,
+    "conf": 0.1,
+    "iou": 0.45,
+    "tile_size": 1024,
+    "overlap": 256,
+    "cross_tile_iou": 0.45,
+    "count_classes": [
+      "window"
+    ]
+  },
+  "selection": "Predefined grid minimum development MAE (10.95 vs 11.05). Zero exact matches; visual review shows a false positive, so this is an experimental review aid, not a useful automatic counter. No evaluation answers inspected.",
+  "development_report_sha256": "497c7b0bee992c9bc0ffcc858c1bb9cb96223a63b6098a9566fe83a8818d3050",
+  "evaluation_manifest_sha256": "c564b6ddad99eee6c17fb8856926bce20efda79f67e9a14f79b912938f32c1d0"
+}

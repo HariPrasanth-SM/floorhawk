@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "custom_adapter_contract": "Trusted local config maps a capability to module:function returning typed status/answer/unit/evidence. Documents and model-generated JSON cannot register executable tools. Test one image + hashes + coordinates before enabling a custom checkpoint.",
+  "models": [
+    {
+      "id": "cubicasa-reference",
+      "adapter": "qa.raster:CubiParser",
+      "capabilities": [
+        "rooms",
+        "fixtures"
+      ],
+      "formats": [
+        "png",
+        "jpeg"
+      ],
+      "revision": "c34440266665a11f4484eb06cd2e4b7d72ad76c1",
+      "max_edge": 512,
+      "device": "cpu",
+      "status": "verified baseline; possible pretrained overlap",
+      "memory_budget": "resource admission; no concurrent GPU residency"
+    },
+    {
+      "id": "rtdetr-floorplan-l",
+      "adapter": "v2.structural:answer",
+      "capabilities": [
+        "window",
+        "door"
+      ],
+      "other_outputs": [
+        "wall",
+        "railing",
+        "linkage_point"
+      ],
+      "formats": [
+        "png",
+        "jpeg"
+      ],
+      "revision": "8ef73f8c42e35f4a4c42a9e2db643ca115531e5f",
+      "sha256": "7c86051cc9f620f119ad16ee5c30a7c4893871ec8684897eac02e996d3307506",
+      "device": "cpu",
+      "imgsz": 1024,
+      "confidence": 0.25,
+      "status": "real inference/full quick development evaluated; experimental, fragment duplicates observed",
+      "license": "Ultralytics AGPL3; CubiCasa-derived. No separate checkpoint grant located, no commercial use claim.",
+      "class_map": {
+        "0": "wall",
+        "1": "door",
+        "2": "window",
+        "3": "railing",
+        "4": "linkage_point"
+      },
+      "expected_inference_seconds_cpu_median": 3.9827,
+      "preprocessing_hash_description": "SHA256 of v2.structural.SETTINGS; recorded per cache/result"
+    },
+    {
+      "id": "ppocr-v5-latin",
+      "adapter": "v2.ocr:answer",
+      "capabilities": [
+        "OCR",
+        "room-label association"
+      ],
+      "languages": "Latin weights, printed Finnish diacritics tested with error on \u00c5; no general accuracy claim",
+      "device": "ONNX CPU2threads",
+      "revision": "RapidOCR3.4.1 asset manifest v3.4.0",
+      "hashes": "external/ppocr-v5/provenance.json",
+      "status": "real uncached offline CPU inference and matched OCR ablation verified; tiny-label errors remain",
+      "license": "PaddleOCR/RapidOCR Apache2.0",
+      "expected_recognized_source_inference_seconds_median": 1.3187
+    },
+    {
+      "id": "qwen3-vl-2b",
+      "adapter": "v2.worker_client:request",
+      "capabilities": [
+        "finite task routing",
+        "experimental visual interpretation"
+      ],
+      "device": "host cuda:0, sequential load/release",
+      "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+      "sha256": "7de1838c87a5349b016c26a1c3f7d2bc400a3d485f95ef39a7059ffd734977a0",
+      "status": "real generation/routing verified;2of6 development paraphrases strict-safe; cached task interpretation",
+      "license": "Apache2.0",
+      "memory_admission_increment_mib": 4500,
+      "target_total_vram_fraction": 0.65,
+      "expected_cold_visual_load_seconds": 11.5346,
+      "measured_visual_inference_seconds": 1.6912,
+      "measured_peak_allocated_bytes": 4331598848
+    },
+    {
+      "id": "gemini-3.1-flash-lite",
+      "adapter": "v2.gemini:generate",
+      "capabilities": [
+        "structured visual evidence repair"
+      ],
+      "formats": [
+        "bounded PNG image evidence",
+        "extracted text"
+      ],
+      "device": "provider",
+      "status": "real image setup passed; off in local",
+      "pricing": "v2.gemini:PRICING",
+      "ledger": "results/v2/gemini-ledger.sqlite3",
+      "license": "Gemini service terms; not an offline model"
+    },
+    {
+      "id": "raster2seq",
+      "status": "not attempted: no compatible spatial reference established to isolate geometry as dominant; preserve conditional45min integration budget for future authorization"
+    }
+  ],
+  "verified_results": "results/v2/offline-quick-local/report.json; results/v2/offline-paired-report.json"
+}

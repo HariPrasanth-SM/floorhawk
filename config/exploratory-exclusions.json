@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "groups": [
+    {
+      "group": "company-exploratory:b25805c1c7511e6da13ce8a59ceb70fdefd88bfd73b4aa711882b30e1c43e35b",
+      "source_sha256": "b25805c1c7511e6da13ce8a59ceb70fdefd88bfd73b4aa711882b30e1c43e35b",
+      "pixel_sha256": "1a106c546c84d2b1ba4fa806cf053ee68da2c3c6ce3925c7d5adbf1d40d8d22f",
+      "role": "exploratory development, excluded from future untouched evaluation"
+    },
+    {
+      "group": "company-exploratory:508c207e8dd54e021428173c76ca588a72f4cc1285270f399aae852deca7719e",
+      "source_sha256": "508c207e8dd54e021428173c76ca588a72f4cc1285270f399aae852deca7719e",
+      "pixel_sha256": "4f48313127487fb6cca63c1c630ccd16970998d930a5c7093fd3c0a45a28d0a2",
+      "role": "exploratory development, excluded from future untouched evaluation"
+    },
+    {
+      "group": "company-exploratory:a92115880ee3ae5eecad5e0aea0f1b8bdda46a12b7d1c173f76e1ff3135fe318",
+      "source_sha256": "a92115880ee3ae5eecad5e0aea0f1b8bdda46a12b7d1c173f76e1ff3135fe318",
+      "pixel_sha256": "0ed45112629991e415e3d11d48625afbea8c561e6a2a6c2a46eb69729e202cfa",
+      "role": "exploratory development, excluded from future untouched evaluation"
+    }
+  ],
+  "policy": "Exclude every matching drawing/project group and byte/pixel alias; never merge into untouched evaluation. Filenames/drawings/results are not published."
+}

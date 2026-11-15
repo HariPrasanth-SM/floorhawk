@@ -1,0 +1,10 @@
+# Added to the existing .venv without replacing the working torch/NumPy pins.
+PyMuPDF==1.26.6
+ifcopenshell==0.8.3.post2
+shapely==2.1.2
+scikit-image==0.25.2
+lmdb==1.7.5
+svgpathtools==1.7.2
+transformers==4.57.1
+huggingface-hub==0.36.0
+gdown==5.2.0

@@ -1,0 +1,10 @@
+{
+  "structural": {
+    "module": "v2.structural_tuned",
+    "function": "answer"
+  },
+  "ocr": {
+    "module": "v2.ocr_tuned",
+    "function": "answer"
+  }
+}

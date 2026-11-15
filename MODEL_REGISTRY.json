@@ -1,0 +1,122 @@
+{
+  "default_raster": "v2: RT-DETR structural windows/doors; official CubiCasa rooms/fixtures; native PDF/IFC first",
+  "floorcad": {
+    "role": "preserved baseline only; disabled as default",
+    "metadata": "model.json"
+  },
+  "official_cubicasa": {
+    "source_url": "https://github.com/CubiCasa/CubiCasa5k",
+    "revision": "c34440266665a11f4484eb06cd2e4b7d72ad76c1",
+    "weights_path": "external/cubicasa-model.pkl",
+    "weights_sha256": "dd20b4e1bf1d670f2125107b079df06958b1ccd36e49a464ab739aeb00b8e7a2",
+    "weight_bytes": 208651193,
+    "source_path": "external/cubicasa",
+    "compatibility_source": "external/cubicasa-compatible",
+    "compatibility_manifest": "external/cubicasa-compatible/patches.json",
+    "postprocessor_sha256": "efa4e162566aeff5168d519c888aefd6e0c4d694083edc4eec8026dae4ddddb6",
+    "code_license": "CC BY-NC 4.0 per upstream LICENSE",
+    "weight_license": "official upstream project checkpoint; project CC BY-NC 4.0 statement; no broader commercial rights inferred",
+    "dataset_license": "company CubiCasa derivative CC BY-NC-SA 4.0",
+    "classes": {
+      "junction_heatmaps": 21,
+      "rooms": [
+        "background",
+        "outdoor",
+        "wall",
+        "kitchen",
+        "living_room",
+        "bedroom",
+        "bath",
+        "entry",
+        "railing",
+        "storage",
+        "garage",
+        "undefined"
+      ],
+      "icons": [
+        "background",
+        "window",
+        "door",
+        "closet",
+        "electrical_appliance",
+        "toilet_fixture",
+        "sink",
+        "sauna_bench",
+        "fireplace",
+        "bathtub",
+        "chimney"
+      ]
+    },
+    "training_overlap": "same CubiCasa5K family; exact membership unavailable in repository; assume potential pretrained overlap in all local splits",
+    "preprocessing": "RGB / 255 *2 -1; max edge512/min side128 bounded CPU profile; no padding; four reference rotations and heatmap remap",
+    "postprocessing": "reference split_prediction and get_polygons threshold0.2 openings[1,2]; coordinate scaling to original image",
+    "real_smoke": "results/cubi-smoke/facts.json; results/qa-smoke-002/predictions.jsonl",
+    "runtime_note": "model loading/inference/postprocessing timings saved per parse and per result; CPU peak GPU allocation null"
+  },
+  "qwen3_vl": {
+    "source_url": "https://huggingface.co/Qwen/Qwen3-VL-2B-Instruct",
+    "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "weights_path": "external/qwen3-vl-2b/model.safetensors",
+    "weights_sha256": "7de1838c87a5349b016c26a1c3f7d2bc400a3d485f95ef39a7059ffd734977a0",
+    "code_weight_license": "Apache-2.0 as declared by upstream",
+    "training_overlap": "unknown",
+    "classes": "not a detector; generated task JSON / explicitly ungrounded visual inventory",
+    "preprocessing": "official processor and apply_chat_template; PIL image; min pixels65536 max262144; thumbnail<=768",
+    "postprocessing": "registered-task validation or nonnegative-int/null inventory schema; no arbitrary code; no fabricated boxes",
+    "verification": "upstream LFS SHA256 and processor tensor shapes passed; generation blocked by unavailable CUDA; VRAM/latency unmeasured",
+    "health": "results/vlm-health.json",
+    "processor_check": "results/qwen-processor-check.json"
+  },
+  "structured_tools": {
+    "PyMuPDF": {
+      "version": "1.26.6",
+      "license": "AGPL-3.0 or commercial licence per upstream",
+      "source": "https://pymupdf.readthedocs.io/"
+    },
+    "IfcOpenShell": {
+      "version": "0.8.3.post2",
+      "license": "LGPL-3.0 per upstream",
+      "source": "https://docs.ifcopenshell.org/"
+    },
+    "Tesseract": {
+      "runtime": "system command; eng language installed",
+      "purpose": "local OCR only where needed; no system modifications"
+    }
+  },
+  "legacy_default_raster": "official_cubicasa",
+  "v2_registry": "v2/registry.json",
+  "v2_adapter_config": "v2/adapter-config.json",
+  "v2_observed_results": "results/v2/final-metrics.json",
+  "overnight_existing_custom_yolo": {
+    "role": "candidate-only task specialist; original default profile retained",
+    "weights_sha256": "95fd78b75b72f50963c03d710dbd38b9c7259e21e141c019f58ab7fbb57e54ea",
+    "weight_bytes": 40569507,
+    "source": "User-supplied floorplan_detector checkpoint; existing before this campaign",
+    "revision": "README reports epoch29; exact training membership unavailable",
+    "classes": [
+      "electrical_appliance",
+      "door",
+      "bathtub",
+      "shower",
+      "window",
+      "sauna_bench",
+      "stairs",
+      "toilet",
+      "sink"
+    ],
+    "class_aliases": {
+      "stairs": "stair",
+      "toilet": "toilet_fixture"
+    },
+    "preprocessing": "Ultralytics YOLO11 letterbox1024; RGB source; sequential batch1; original-pixel XYXY",
+    "observation_settings": {
+      "confidence": 0.05,
+      "iou": 0.7,
+      "max_det": 500
+    },
+    "selected_policy": "config/overnight-candidate.json; sinks/toilet fixtures/showers+baths plus door corroboration; custom window replacement rejected",
+    "training_overlap": "README reports4200 CubiCasa5K plans; IDs not supplied. Potential overlap in every CubiCasa partition; never certify unseen.",
+    "license": "README states CubiCasa CC BY-NC-SA4.0 and Ultralytics AGPL3; exact redistribution/commercial rights require review",
+    "cloud_asset": "campaign-assets-v1/floorplan_yolo11m.pt"
+  }
+}

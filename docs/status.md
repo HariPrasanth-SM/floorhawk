@@ -1,0 +1,16 @@
+## Agile candidate — 2026-11-14
+
+See [bounded measurements and verification](agile-hour1.md). Default policy preserved;32question development candidate, Local18/28 versuscustom21/28numeric. Cloud run stopped on latestlocal-onlyinstruction; no background experiment remains.
+
+# Bounded large-drawing exploration — 2026-11-14
+
+25-minute task, feature work frozen by15:25:30UTC. Original samples located under configured dataset sibling datasets/samples: three PNGs67.32/69.707/67.32MP, original hashes/dimensions/bytes external results/samples25/sources.json. Original uploads accepted by actual validation route; no claim that ingestion alone is inference. Source/pixel identities quarantined in config/exploratory-exclusions.json; future final-manifest builder honors them.
+
+New recommended live command `bash proofplan/start_live.sh --port 8777` enables existing paired/large adapters, request defaults Local and visible Gemini assistance toggle OFF. Captures submitted mode; source selection clears stale answer/evidence and old pending jobs cannot overwrite it. Model/default benchmark policies unchanged. Original-resolution1536px tiles/20% overlap, sequential host RT-DETR calls, class-aware box suppression and location+text OCR dedup. Original source coordinates map to preview and original evidence crops.64 detector tiles/150s dispatch and12 OCR tiles/90s bounds, source100MP/32k/20MB and estimated900MiB decode bound; active worker call can extend dispatch budget. Partial candidate counts are withheld as sheet totals; global room/storey aggregation not tiled/summed.
+
+Actual exploratory outcomes UNGRADED: dormitory (not school) windows Local165/Hybrid165,54/54 tiles, no correctness/completeness proof; piping suction-header query Local literal OCR HEADER/HEADER/16" SUCTION HEADER, Hybrid16",12 OCR tiles/partial text coverage. Four other questions untested; slab extraction began but no completed answer.2 HTTP calls/$0.024 reservation; token estimate in samples summary. Existing development70.12% and16-case4/13 scores unchanged.54 actual uncached RT-DETR CUDA forwards recorded input tensors cuda:0, executing PID/model/weight/device/GPU samples, peak allocation352.59MiB. CPU OCR retained. No training/new models/Modal deployment.
+
+First attempt stopped at systemRAM78.74% under existing shedding rule; user freed memory to39.48%. Recovered run completed2 cases, then stopped on stale host telemetry; temporary8777 server stopped under same fail-closed policy. Prior8776 server was connection-refused, no active test server found. User-started host worker is not deliberately stopped; its heartbeat needs restoration before live launch. No resource control disabled or unrelated process killed.82 regression/focused tests pass; actual three-file ingestion validation passes; final real browser toggle/switch checks blocked by heartbeat failure, documented rather than claimed. Live server launch admitted before telemetry loss; no server/evaluation remains from task. See proofplan/docs/samples-smoke.md, README.md, docs/demo.md, SOLUTION_ANALYTICS.md. Raw exploratory data/crops/evidence stay outside Git; final private commit/push recorded in results/samples25/delivery.json.
+
+
+Previous detailed workspace status is retained in ../STATUS.md; source history summaries are in reports/history.

@@ -1,0 +1,25 @@
+{
+  "id": "supplied-floorplan-yolo11m",
+  "adapter": "custom_detector",
+  "default_promoted": false,
+  "weights_filename": "floorplan_yolo11m.pt",
+  "weights_bytes": 40569507,
+  "weights_sha256": "95fd78b75b72f50963c03d710dbd38b9c7259e21e141c019f58ab7fbb57e54ea",
+  "weights_env": "PROOFPLAN_CUSTOM_YOLO_WEIGHTS",
+  "restored_model_relative_path": "custom-yolo/floorplan_yolo11m.pt",
+  "existing_workspace_relative_path": "../floorplan_detector/floorplan_yolo11m.pt",
+  "source": "User supplied folder README and infer.py; no source revision manifest supplied",
+  "supplied_description": "YOLO11m, epoch29 per README; exported checkpoint epoch=-1 so epoch not verified",
+  "checkpoint_ultralytics_version": "8.3.141",
+  "checkpoint_load_verified_ultralytics_version": "8.3.40",
+  "class_map": {
+    "0": "electrical_appliance", "1": "door", "2": "bathtub", "3": "shower", "4": "window",
+    "5": "sauna_bench", "6": "stairs", "7": "toilet", "8": "sink"
+  },
+  "settings": {"conf": 0.4, "imgsz": 1024, "iou": 0.7, "max_det": 500, "batch": 1},
+  "license": "Treat as non-commercial CubiCasa-derived CC BY-NC-SA4.0 per supplied README; Ultralytics AGPL-3.0. No broader checkpoint licence grant verified.",
+  "training_domain": "4200 CubiCasa5K Finnish real-estate floor plans per supplied README",
+  "exact_training_memberships_available": false,
+  "possible_pretrained_or_custom_training_overlap": true,
+  "notes": ["Sauna benches are not sauna-room counts", "Author-reported epoch26 count metrics do not certify this exported checkpoint", "Generic technical drawings may be outside training domain", "Weight bytes and generated predictions are never tracked"]
+}

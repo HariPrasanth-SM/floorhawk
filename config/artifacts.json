@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "artifacts": [
+    {
+      "filename": "cubicasa-model.pkl",
+      "kind": "third_party",
+      "bytes": 208651193,
+      "sha256": "dd20b4e1bf1d670f2125107b079df06958b1ccd36e49a464ab739aeb00b8e7a2",
+      "source": "https://drive.google.com/uc?id=1gRB7ez1e4H7a9Y09lLqRuna0luZO5VRK",
+      "revision": "c34440266665a11f4484eb06cd2e4b7d72ad76c1",
+      "license": "CC BY-NC4.0 upstream; commercial use not inferred"
+    },
+    {
+      "filename": "rtdetr/rtdetr_l_autoresearch_60ep.pt",
+      "kind": "third_party",
+      "bytes": 66357558,
+      "sha256": "7c86051cc9f620f119ad16ee5c30a7c4893871ec8684897eac02e996d3307506",
+      "source": "https://raw.githubusercontent.com/OldDeLorean/rtdetr-floorplan-detector/8ef73f8c42e35f4a4c42a9e2db643ca115531e5f/weights/rtdetr_l_autoresearch_60ep.pt",
+      "revision": "8ef73f8c42e35f4a4c42a9e2db643ca115531e5f",
+      "license": "See pinned v2 registry; redistribution requires license review"
+    },
+    {
+      "filename": "v3-room-model/calibration.json",
+      "kind": "custom",
+      "bytes": 6719,
+      "sha256": "00306f545a7545f09b79c9fb8d647aa255de077f41481197629565990b1c31cf",
+      "source": "local bounded count supervision",
+      "revision": "frozen v3",
+      "license": "Research artifact; underlying data/weights restrictions apply"
+    },
+    {
+      "filename": "v3-wash-model/calibration.json",
+      "kind": "custom",
+      "bytes": 625,
+      "sha256": "7fd8afbbe6942177f3ff33b285da8ca27543680587e94106f926bfbd3fa08412",
+      "source": "local bounded count supervision",
+      "revision": "frozen v3",
+      "license": "Research artifact; underlying data/weights restrictions apply"
+    },
+    {
+      "filename": "v3-layout-model/calibration.json",
+      "kind": "custom",
+      "bytes": 534,
+      "sha256": "95bbabef2550f14322749018bacf2337b1768805548be0b1d3d0efa5e4ab43fe",
+      "source": "local bounded count supervision",
+      "revision": "frozen v3",
+      "license": "Research artifact; underlying data/weights restrictions apply"
+    },
+    {
+      "filename": "campaign-assets-v1/floorplan_yolo11m.pt",
+      "kind": "user_supplied_custom",
+      "bytes": 40569507,
+      "sha256": "95fd78b75b72f50963c03d710dbd38b9c7259e21e141c019f58ab7fbb57e54ea",
+      "source": "Existing user-provided floorplan_detector; no public redistribution URL supplied",
+      "revision": "Supplied checkpoint; README epoch29 claim",
+      "license": "CubiCasa CC BY-NC-SA4.0/Ultralytics AGPL3 per supplied README; protected non-commercial demo; review before redistribution"
+    },
+    {
+      "filename": "campaign-release-assets/568decc669d2ce00ed71f9f0cd0345dfedda5f2302293acb9d7777e0333c0c69/selector.json",
+      "kind": "custom_calibration",
+      "bytes": 27664,
+      "sha256": "568decc669d2ce00ed71f9f0cd0345dfedda5f2302293acb9d7777e0333c0c69",
+      "source": "Own grouped-development proposal selector; generated from saved specialist/review/OCR observations",
+      "revision": "grounded-proposal-selector-v1; five canonical drawing/project folds",
+      "license": "Own calibration artifact; underlying data/checkpoint restrictions and unknown training overlap remain"
+    }
+  ],
+  "note": "No construction datasets, drawings, secrets, predictions or transcripts permitted. Optional Qwen/OCR/source compatibility assets restore via existing pinned downloaders and registries."
+}

@@ -1,0 +1,26 @@
+{
+  "version": "v3-development-candidate",
+  "fixture_profile": "1024-one",
+  "sauna_room_graph": true,
+  "targeted_cloud_model": "gemini-3.1-flash-lite",
+  "cloud_policy": "targeted unfiltered count evidence review; Local never reads cloud caches",
+  "role": "development-selected; heldout not used",
+  "hybrid_strategy": "selective-lite-inventory-and-original-repair",
+  "experimental_targeted_review_enabled": false,
+  "storey_layout_model": true,
+  "layout_model_sha256": "95bbabef2550f14322749018bacf2337b1768805548be0b1d3d0efa5e4ab43fe",
+  "wash_head": true,
+  "room_fusion_targets": [],
+  "room_strategies": {
+    "bedroom": "native-label",
+    "kitchen": "learned",
+    "bathroom": "learned",
+    "wc_room": "learned",
+    "sauna": "learned",
+    "balcony": "learned"
+  },
+  "room_model_sha256": "00306f545a7545f09b79c9fb8d647aa255de077f41481197629565990b1c31cf",
+  "wash_model_sha256": "7fd8afbbe6942177f3ff33b285da8ca27543680587e94106f926bfbd3fa08412",
+  "native_pdf_symbols": true,
+  "rendered_pdf_structural": true
+}
