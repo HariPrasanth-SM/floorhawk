@@ -4,6 +4,8 @@
 
 **Academic Menaces · STOA — Make Blueprints Talk · Junction 2026**
 
+Private submission repository: https://github.com/HariPrasanth-SM/floorhawk (kept private; original development repository preserved).
+
 Verified event release: `5827eab5e423bae3eb7413a2c773183afa2f60f0`.
 
 |Role|Protected URL|GPU warming|

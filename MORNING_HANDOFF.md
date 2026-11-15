@@ -2,7 +2,7 @@
 
 Academic Menaces · STOA — Make Blueprints Talk · Junction2026.
 
-Checkpoint 2026-11-15T06:07:14.398390+02:00. Deployment/browser delivery is verified; private submission push is being finalized. Untouched evaluation has not started. This file will be updated after evaluation/07:30 shutdown.
+Checkpoint 2026-11-15T06:07:14.398390+02:00. Deployment/browser/private submission delivery is verified. Private repository: https://github.com/HariPrasanth-SM/floorhawk ; initial commit4d3704dc2767a084bdfdb89d2ec943d7ad4587d6. Exported from canonical b1b8816 with frozen inference files matching deployed5827eab. No public conversion or agent history. Frozen LocalCPU evaluation is running under the global advisory lock and monitored07:30 deadline; no provider calls or tuning. Final references remain unopened while inference proceeds. This file will be updated after evaluation/shutdown.
 
 ## Three protected links
 

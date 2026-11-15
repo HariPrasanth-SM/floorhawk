@@ -1,5 +1,5 @@
 {
-  "source_commit": "b1b8816db132604e809197880309d9c6b93962d4",
+  "source_commit": "bf1dbd4b7128e77e32709f9baf898398fbe82567",
   "repository": "private FloorHAWK submission",
   "files": {
     ".env.example": {
@@ -23,20 +23,20 @@
       "bytes": 5379
     },
     "MORNING_HANDOFF.md": {
-      "sha256": "93fa2fa4614283c0760d456c5334286d4c380269f66a8bdf840a077918ffaf8d",
-      "bytes": 6555
+      "sha256": "0f598a21bde26b2d0180756a766134040ad1c85c672702bdcd3f66c1cd8a641b",
+      "bytes": 6920
     },
     "README.md": {
-      "sha256": "a39e28891ebfc88e7ce4e62ce00de55bf9ced6ab1d37540abc1b68163edb045d",
-      "bytes": 11923
+      "sha256": "15260caf455a925382454c9e64f525b843b19dacb422ac7e1d65dff271f1ee22",
+      "bytes": 12059
     },
     "SOLUTION_ANALYTICS.md": {
-      "sha256": "59b47a1f6ab5347dfad0c51e3d709e49eb5cffdd7754cb899ebff35449786db7",
-      "bytes": 5436
+      "sha256": "c16202a7f17014fe9d7082a590fe48a8c0c2c2bc798f3eff0a986cf93a0a634e",
+      "bytes": 5632
     },
     "STATUS.md": {
-      "sha256": "8228dbf185750c8ebcdd90b0a1d1eeae92abf72207ca7b82295c1314d79a7adf",
-      "bytes": 2992
+      "sha256": "37bcf7733e9a8cc28a0647e0118dffc013dd0526772bba5ab39af9c3d3ede787",
+      "bytes": 3253
     },
     "app.py": {
       "sha256": "84a12d83ec600c2b59814659c1a9d6c50c777bc60befa30ddea31538cbd4c2a3",
@@ -407,8 +407,8 @@
       "bytes": 3615
     },
     "docs/OVERNIGHT_PROGRESS.md": {
-      "sha256": "ee62e5bba80047410f50d0a132aaeb7612cd0901c1302a5ac438be001e146aee",
-      "bytes": 3905
+      "sha256": "bdb53d00f84bd6c5e7ce314e673fa571315aebd3a062bfe05f2210cbd919c778",
+      "bytes": 4493
     },
     "docs/PRESENTER_BROWSER_VERIFICATION.md": {
       "sha256": "eee5992c32a88858c0aab871a38f3cd98e5ba47cb77cc8e308241a367236fd70",
@@ -1123,5 +1123,6 @@
       "bytes": 1314681
     }
   },
-  "exclusions": "No history, datasets, drawings, references, weights, predictions, secrets or raw agent sessions. External artifact checksums/restoration instructions retained."
+  "exclusions": "No history, datasets, drawings, references, weights, predictions, secrets or raw agent sessions. External artifact checksums/restoration instructions retained.",
+  "deployed_source_commit": "5827eab5e423bae3eb7413a2c773183afa2f60f0"
 }

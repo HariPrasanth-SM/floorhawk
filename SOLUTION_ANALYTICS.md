@@ -48,7 +48,7 @@ Original predictions, weights, references and split hashes passed preservation c
 
 ## Untouched data status
 
-No final reference answers were opened or final inference run. Answer-free audit retained6876provisional questions/354groups:1298with no known local custom-training/development overlap and5578CubiCasa questions with unknown4200-plan custom training membership. External pretrained overlap and unknown aliases remain limitations. Do not call the latter certified unseen data.
+Frozen LocalCPU evaluation began only after deployment and private submission delivery. Final reference answers remain unopened while inference runs; no tuning is permitted. Coverage/results will be reported separately, not merged with development estimates. Answer-free audit retained6876provisional questions/354groups:1298with no known local custom-training/development overlap and5578CubiCasa questions with unknown4200-plan custom training membership. External pretrained overlap and unknown aliases remain limitations. Do not call the latter certified unseen data.
 
 Reproduce saved-result comparison: `.venv/bin/python -m campaign.report_development`. Scores/row-level records: `results/overnight-20261115/candidate-production-policy/{score.json,rows.jsonl}`; original best estimate: `candidate-pdf-recovery-v3/`; contract: `baseline/contract.json`; source hashes and run paths: `development-report/summary.json`. Browser artifacts remain outside Git under `floorhawk-modal/verification/overnight-candidate/`.
 
