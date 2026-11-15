@@ -1,5 +1,5 @@
 {
-  "source_commit": "f0e05598256490c68c0c6b65328a6d9df103e976",
+  "source_commit": "b7730dd82884529df47fb296a57567d97360cd7f",
   "repository": "private FloorHAWK submission",
   "files": {
     ".env.example": {
@@ -427,8 +427,8 @@
       "sha256": "6c3f31a349153019246a8de19bb5743b2ec422f3fc3d5f2bdfc183639a71279d"
     },
     "docs/EVENT_OPERATIONS.md": {
-      "bytes": 5793,
-      "sha256": "2bea2b0c24e160b66f295bd4df25658cd7df3cf41840ddaf103aff2c284cfa3e"
+      "bytes": 6706,
+      "sha256": "d8e83fe11b6aefd8092863a11c39392794bb8b17d4fee9a68b8eecf15c60be7d"
     },
     "docs/EVENT_READINESS.md": {
       "bytes": 5444,

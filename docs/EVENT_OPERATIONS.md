@@ -55,7 +55,16 @@ Select each role explicitly; the selected operational role persists outsideGit:
 .venv/bin/modal deploy deploy/modal/app.py
 ```
 
-Use presenter/judges as appropriate. Subsequent deployments read the same role-capacity policy. Immutable source snapshots/weights remain intact. For rollback use `releases/event-readiness-lock` (public9cd9301) and `releases/overnight-resource-bounds` (presenter/judges8fce908). Those earlier releases restore their former constraints and warming; verify after rollback. Never edit a live weight or frozen source snapshot in place.
+Use presenter/judges as appropriate. Subsequent deployments read the same role-capacity policy. Immutable source snapshots/weights remain intact. For rollback use `releases/event-readiness-lock` (public9cd9301) and `releases/overnight-resource-bounds` (presenter/judges8fce908). Those earlier releases restore their former constraints and warming. Import their OWN pinned deployment entrypoint, not current helpers against an old image. For public rollback:
+
+```bash
+# From canonical proofplan/ select the old role/snapshot first:
+.venv/bin/python -m campaign.operator --role public --release ../floorhawk-modal/releases/event-readiness-lock --enable-live
+cd "$HOME/Junction 2026/floorhawk-modal/releases/event-readiness-lock"
+FLOORHAWK_WORKSPACE="$HOME/Junction 2026/floorhawk-modal" FLOORHAWK_RELEASE="$PWD" PYTHONPATH="$PWD" "$HOME/Junction 2026/proofplan/.venv/bin/modal" deploy deploy/modal/app.py
+```
+
+For presenter/judges select that role and use its pinned overnight-resource-bounds directory in the same environment pattern. Use each snapshot's matching operator helpers after rollback; current readiness keyword arguments are not promised compatible with old signatures. Rollback snapshots remain intact; disruptive rollback was not performed after successful verification. Never edit a live weight or frozen source snapshot in place.
 
 Admission locks have no unsafeTTL expiry. Stop the matching app first, then `.venv/bin/python deploy/modal/manage.py recover-lock --role public --confirm-app-stopped`. Recovery verifies appstate, interrupts orphaned jobs and leaves admission/provider disabled; it preserves histories. Do not unlock a running owner.
 
