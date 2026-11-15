@@ -1,5 +1,5 @@
 {
-  "source_commit": "4a632e4d446506dbb32bf017215858aa948dba13",
+  "source_commit": "cd8bb8303f8e60c06252ed7f73e37c0a7e6c498c",
   "repository": "private FloorHAWK submission",
   "files": {
     ".env.example": {
@@ -23,20 +23,20 @@
       "bytes": 5379
     },
     "MORNING_HANDOFF.md": {
-      "sha256": "cf0302840bee064b9d1449f20cb5bff917fb3b71be359ff718277f64ed89fac8",
-      "bytes": 7397
+      "sha256": "4dad5779e3f7aa3ccc52ed3d124ab5f5920ae3c825ac51032f4578aa7779ea32",
+      "bytes": 7729
     },
     "README.md": {
-      "sha256": "fca83855392b55891ca1b83c079768ae3c93317582992c143a9077ebd097e3d6",
-      "bytes": 12195
+      "sha256": "236757fbc733aa5e949476442662d0002ecb02dbaa3e8da4d5b1233d08154f2f",
+      "bytes": 12361
     },
     "SOLUTION_ANALYTICS.md": {
-      "sha256": "42fef98a19ef32f7a3dbe4531a4ff6fa5943ad456b183f6a792bffa098e9be85",
-      "bytes": 6216
+      "sha256": "b0a21738d5891d161d8294ef140a8520806236a7b5f4db55380af1f1266f0b00",
+      "bytes": 5944
     },
     "STATUS.md": {
-      "sha256": "df6db7cd6b0141caf4b6c44ddd5f785751e8b57ed8d4455e7f78a2207d6e2c93",
-      "bytes": 3730
+      "sha256": "bf267d84629274c43bb65007fa96d5cf97201b1d5e127dec6c2bff3bef432fbb",
+      "bytes": 1927
     },
     "app.py": {
       "sha256": "84a12d83ec600c2b59814659c1a9d6c50c777bc60befa30ddea31538cbd4c2a3",
@@ -179,8 +179,8 @@
       "bytes": 5038
     },
     "campaign/report_final.py": {
-      "sha256": "a153fd64850e2420474de7fbfac63a795f8c62c6d0fc35b4c7b4ea52f12353a3",
-      "bytes": 6163
+      "sha256": "4e5d6c5b3180fc59cf604da18d4745716a0c5dfcdfb850f32ab91f8a0ef39ec8",
+      "bytes": 7310
     },
     "campaign/review.py": {
       "sha256": "d63b0db68abb82fc8e5aeb2115a547790381be520a03a291a7c9ea90d2506d02",
@@ -390,9 +390,17 @@
       "sha256": "ca6360f93ae016296eeadd40b436d0c5c29c8a81ed5776902ad739ee88a2452e",
       "bytes": 6112
     },
+    "docs/BUDGET_RECONCILIATION.md": {
+      "sha256": "0877f81e810964e91f349937db8a47aac4c0fa3321417af6bf1f3b7a1f9a6129",
+      "bytes": 3958
+    },
     "docs/EVENT_OPERATIONS.md": {
       "sha256": "9411912ae32790480a247e8e4a6c99470a9b15d9e5a80d77b16c6f2fbc91fe5f",
       "bytes": 6166
+    },
+    "docs/FINAL_EVALUATION.md": {
+      "sha256": "79ebaa98d22a75812ca7c5ead4540746b7d86f1c087065cffd7c44e991e23c27",
+      "bytes": 5474
     },
     "docs/GALLERY_OVERNIGHT_VERIFICATION.md": {
       "sha256": "a1f50f514baf21740f16c6e5f94a1976a657fe7bc975a98b76c8f0ce0c3a12b8",
@@ -406,17 +414,21 @@
       "sha256": "61795dc17b3d9e41a69d82e53a745b477fa18cfc4cb28cea15f2bc195682e7ec",
       "bytes": 4938
     },
+    "docs/MORNING_REPORT.md": {
+      "sha256": "45c7df78daf8fa12c45bd85e4e46045ffe6fe4a1be04754e5b86861766ad6aed",
+      "bytes": 13161
+    },
     "docs/OVERNIGHT_DEPLOYMENT_VERIFICATION.md": {
-      "sha256": "2321b925ad953ad0397443621c9582e0a8a92d6233c2870e1682eeba9b226a38",
-      "bytes": 7380
+      "sha256": "0ad14f2b58441e54ba9c2101738027783076b098c7e7c02b0cdedf52228a4374",
+      "bytes": 7740
     },
     "docs/OVERNIGHT_DEVELOPMENT.md": {
-      "sha256": "910e68e7d779ac5fff282529bc244c8145db5e77aed00dfaf0d5528c08a3c643",
-      "bytes": 6033
+      "sha256": "e86da39e3514055c7addef4f524c8eda982ebc85b255c5026868a69f4562a276",
+      "bytes": 8223
     },
     "docs/OVERNIGHT_PROGRESS.md": {
-      "sha256": "ac8b47a3b0dde359f7d236656b9f6afdfaefee5ecc581dd714c2b709e5ba1bf3",
-      "bytes": 4751
+      "sha256": "a259bd149e343f146c1cd4d4a360270da4690da15c98836ae1e696885546ac0d",
+      "bytes": 5776
     },
     "docs/PRESENTER_BROWSER_VERIFICATION.md": {
       "sha256": "eee5992c32a88858c0aab871a38f3cd98e5ba47cb77cc8e308241a367236fd70",
@@ -427,12 +439,12 @@
       "bytes": 7236
     },
     "docs/RECORDING_GUIDE.md": {
-      "sha256": "e8228b2c88d8100e07cc4f9605d9b41bf61827e1b545f67bfe20dde02aa3ff46",
-      "bytes": 3207
+      "sha256": "8edfb7458d3a348f75a4323984d501c9610a857cf8a6ea8d1f42ad46b5d7d7e0",
+      "bytes": 3630
     },
     "docs/RELEASE_WORKFLOW.md": {
-      "sha256": "6d4b0a6309f9a24c2b459ccb032340a0c5ff164f9acc770cdb87b08016a8ac09",
-      "bytes": 5877
+      "sha256": "f5b63b59b9e60f32d4ce314da9d5d77022142ac28fc1e74a4057e6eb09e328e7",
+      "bytes": 6540
     },
     "docs/STATUS.md": {
       "sha256": "aad9ff4f35483871dcf58006abcada85f362f226b4bb4aaa5d1d22697fbd1d18",
@@ -475,8 +487,8 @@
       "bytes": 2859
     },
     "docs/event-verification.json": {
-      "sha256": "e3f2acf119feaffacd9522ff8864a05409d82dc0a94f28eccdd14f1569041d6c",
-      "bytes": 2327
+      "sha256": "7b151deb7532567dc9746e3e0f7ef8dedc11fe831c37e28f55eabc77f1705b0a",
+      "bytes": 3246
     },
     "docs/floorhawk-ui.md": {
       "sha256": "277ccc208121d20a12d8b30c9c8ff5b434a09af9fc0ddfd2fdaca4d218d2619c",

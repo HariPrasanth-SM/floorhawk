@@ -6,6 +6,7 @@ import collections
 import hashlib
 import json
 import statistics
+from datetime import datetime
 from pathlib import Path
 
 from campaign.clock import atomic, now
@@ -53,6 +54,12 @@ def main():
     source_seconds = [call['source_seconds'] for source in sources for call in source['source_calls']]
     query_seconds = [r['evaluation_query_seconds'] for r in rows if isinstance(r.get('evaluation_query_seconds'), (int, float))]
     telemetry = read_rows(OUT / 'final-resources.jsonl')
+    resumed = OUT / 'final-resources-resume.jsonl'
+    if resumed.exists():
+        telemetry += read_rows(resumed)
+    telemetry.sort(key=lambda r: r['time'])
+    gaps = [{'after_epoch': a['time'], 'before_epoch': b['time'], 'seconds': b['time'] - a['time']}
+            for a, b in zip(telemetry, telemetry[1:]) if b['time'] - a['time'] > 5]
     main_summary = reports['all_eligible']['summary']
     detailed = read_rows(dest / 'metrics/all_eligible/rows.jsonl')
     quantities = {}
@@ -64,6 +71,9 @@ def main():
             'signed_bias': statistics.mean(r['signed_error'] for r in values) if values else None,
             'units': dict(collections.Counter(str(r['unit']) for r in values)),
         }
+    drawing_rows = collections.defaultdict(list)
+    for row in detailed:
+        drawing_rows[row['drawing_group']].append(row)
     execution_errors = main_summary['outcomes'].get('Execution error', 0)
     extra = {
         'generated': now(), 'mode': 'Frozen Local CPU only; not a Hybrid serving score',
@@ -73,6 +83,8 @@ def main():
         'source_checkpoints': len(sources),
         'complete_source_checkpoints': sum(s['complete'] for s in sources),
         'eligible_sources': len({q['path'] for q in qs}),
+        'recorded_drawing_groups': sum(any(r['recorded'] for r in rs) for rs in drawing_rows.values()),
+        'fully_recorded_drawing_groups': sum(all(r['recorded'] for r in rs) for rs in drawing_rows.values()),
         'summaries': {k: v['summary'] for k, v in reports.items()},
         'quantity_errors': quantities,
         'execution_failure_rate_recorded': execution_errors / len(rows) if rows else None,
@@ -80,6 +92,7 @@ def main():
         'source_processing_seconds': {'n': len(source_seconds), 'sum': sum(source_seconds), 'median': statistics.median(source_seconds) if source_seconds else None, 'min': min(source_seconds) if source_seconds else None, 'max': max(source_seconds) if source_seconds else None},
         'query_elapsed_seconds_including_source_cache_reuse': {'n': len(query_seconds), 'median': statistics.median(query_seconds) if query_seconds else None, 'min': min(query_seconds) if query_seconds else None, 'max': max(query_seconds) if query_seconds else None},
         'resource_samples': {'n': len(telemetry), 'cpu_percent_max_sampled': max((r['cpu_percent'] for r in telemetry), default=None), 'ram_percent_max_sampled': max((r['ram_used_percent'] for r in telemetry), default=None), 'disk_free_bytes_min_sampled': min((r['disk_free_bytes'] for r in telemetry), default=None)},
+        'resource_telemetry_gaps_over_5_seconds': gaps,
         'model_loading_seconds': None,
         'limits': [
             'No model/router/prompt/threshold/grade tuning after final evaluation.',
@@ -92,8 +105,11 @@ def main():
             'Raw loading zero is unmeasured, not zero load cost; report N/A.',
             'CPU versus CUDA output differences are possible; this is not deployed Hybrid accuracy.',
             'Telemetry is sampled, not an instantaneous utilization guarantee.',
+            'The telemetry-only process stopped and was resumed; gaps are explicit. The separate inference supervisor/admission remained active.',
         ],
         'runner': task,
+        'wall_elapsed_seconds': ((datetime.fromisoformat(task['finished']) - datetime.fromisoformat(task['started'])).total_seconds()
+                                 if task.get('finished') and task.get('started') else None),
     }
     atomic(dest / 'final-summary.json', extra)
     print(json.dumps(extra, indent=2))

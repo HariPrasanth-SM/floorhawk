@@ -113,3 +113,46 @@ Four selected numerically correct DEVELOPMENT predictions were rendered from the
 |q-000184|Sauna1|S label/bench is present, but the coarse box extends into garage context|Count agrees; boundary localization is imprecise. Agreement is not spatial correctness|
 
 Overlays and original saved records: `results/overnight-20261115/count-evidence-audit/{storey,kitchen,bathroom,sauna}.{png,json}`. No images or bulk predictions are committed. A zero answer with no evidence is never evidence of verified absence.
+
+
+## Source and language breakdown (saved development results only)
+
+|Source folder|Correct / valid references|Answered / questions|Unique drawings|
+|---|---:|---:|---:|
+|cubicasa5k|5496/6404|6404/6404|361|
+|ifc_bench|0/0|20/70|2|
+|ifc_models|9/184|24/184|4|
+|opening_design|8/17|9/20|1|
+|swiss_dwellings|2410/2866|2722/2866|81|
+
+|Language|Correct / valid references|Answered / questions|Unique drawings|
+|---|---:|---:|---:|
+|de|854/980|950/980|54|
+|en|3967/4746|4603/4819|448|
+|fi|2748/3202|3202/3202|361|
+|fr|268/341|313/341|20|
+|it|86/138|106/138|9|
+|nl|0/64|5/64|1|
+
+Source folders do not define input format: the `ifc_models` folder also contains PDF views. Its64Dutch questions are PDF inputs:59abstained/unsupported and5answered counts, none correct. A PDF view does not provide the full associated IFC. This is an observed scope/coverage limitation, not evidence that a detector lacks a Dutch or sauna class.
+
+## Largest residual target groups (at least50valid references)
+
+|Target|Not correct / valid (including abstentions)|Correct / valid|Baseline correct on same target|Unique drawings|
+|---|---:|---:|---:|---:|
+|window|364/901|537/901|N/A|447|
+|door|321/715|394/715|N/A|352|
+|room|193/1690|1497/1690|N/A|83|
+|shower_bath|144/672|528/672|N/A|336|
+|sink|116/868|752/868|N/A|438|
+|bedroom|64/426|362/426|N/A|213|
+|toilet_fixture|62/884|822/884|N/A|443|
+|bathtub|45/121|76/121|N/A|64|
+|bathroom|28/356|328/356|N/A|178|
+|apartment|26/448|422/448|N/A|81|
+|wc_room|24/350|326/350|N/A|175|
+|storey|20/722|702/722|N/A|361|
+
+These overlapping target/source/language views are descriptive, not causal ablations. Windows/doors remain high-volume weaknesses. Text/OCR semantics, object scale, localization quality and instance grouping are plausible contributors; these summaries do not identify particular missed objects. Count-head visual audit above shows why correct numbers alone are insufficient.
+
+All per-route, source, format, language and evidence-type denominators remain machine-readable in `results/overnight-20261115/candidate-production-policy/score.json`; row-per-question statuses/predictions/references are separate evaluator-only `rows.jsonl`, never inference payloads.

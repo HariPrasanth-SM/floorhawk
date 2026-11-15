@@ -77,5 +77,44 @@
   },
   "normal_login": true,
   "browser_errors": [],
-  "limits": "Sampled GPU activity is not an instantaneous utilization guarantee. Curated matches are not held-out accuracy."
+  "limits": "Sampled GPU activity is not an instantaneous utilization guarantee. Curated matches are not held-out accuracy.",
+  "fallback_job_sha256": "62d0d9f27bf3ec19d47cb50d028696f3d69bb52fc9b1db515bce764430732018",
+  "fallback_uncached_execution": [
+    {
+      "model": "CubiCasa5K",
+      "device": "cuda:0",
+      "observed_tensor_devices": [
+        "cuda:0"
+      ],
+      "cache_hit": false,
+      "peak_gpu_memory_bytes": 522295808
+    },
+    {
+      "model": "CubiCasa5K",
+      "device": "cuda:0",
+      "observed_tensor_devices": [
+        "cuda:0"
+      ],
+      "cache_hit": false,
+      "peak_gpu_memory_bytes": 893038592
+    },
+    {
+      "model": "RT-DETR-L",
+      "device": "cuda:0",
+      "observed_tensor_devices": [
+        "cuda:0"
+      ],
+      "cache_hit": false,
+      "peak_gpu_memory_bytes": 893038592
+    },
+    {
+      "model": "Custom YOLO11m",
+      "device": "cuda:0",
+      "observed_tensor_devices": [
+        "cuda:0"
+      ],
+      "cache_hit": false,
+      "peak_gpu_memory_bytes": 893038592
+    }
+  ]
 }

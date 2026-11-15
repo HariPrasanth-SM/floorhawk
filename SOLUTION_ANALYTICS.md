@@ -1,6 +1,6 @@
 # FloorHAWK current analytics — frozen release5827eab
 
-Current deployment checkpoint: all3URLs verified at resource-only revision `8fce908`; frozen inference base remains `5827eab`. See [resource correction](docs/OVERNIGHT_DEPLOYMENT_VERIFICATION.md). Final LocalCPU evaluation continues under the07:30deadline; references were opened only by a separate evaluator after freeze/delivery and no final prediction scores have been inspected. Prior statements below saying references remain unopened are superseded by this checkpoint.
+Current deployment8fce908/frozeninference5827eab. Frozen finalLocalCPU stopped:5602/6876recorded; correctall4214/6876(61.29%), recordedsubset4214/5602(75.22%). Partial/overlap caveats and full metrics: [final evaluation](docs/FINAL_EVALUATION.md). No final-result tuning.
 
 Academic Menaces · STOA — Make Blueprints Talk · Junction2026.
 
@@ -48,9 +48,9 @@ Last shared durable envelope reading:400recorded HTTP responses,15.505USDconserv
 
 Original predictions, weights, references and split hashes passed preservation checks. Full development details and all per-format/task/target tables: [overnight development](docs/OVERNIGHT_DEVELOPMENT.md). Previous analytics are preserved under [history](reports/history/2026-11-15-pre-overnight-analytics.md).
 
-## Untouched data status
+## Frozen final evaluation
 
-Frozen LocalCPU evaluation began only after deployment and private submission delivery. A separate evaluator opened references only after freeze and verified delivery; inference receives none and no tuning is permitted. Coverage/results will be reported separately, not merged with development estimates. Answer-free audit retained6876provisional questions/354groups:1298with no known local custom-training/development overlap and5578CubiCasa questions with unknown4200-plan custom training membership. External pretrained overlap and unknown aliases remain limitations. Do not call the latter certified unseen data.
+5602/6876questions and273/354sources recorded on LocalCPU,0provider calls. Correct/all eligible4214/6876(61.29%); recordedsubset4214/5602(75.22%). Missing1274remain visible. CountMAE0.473979,bias-0.240192,N4996. Separate PDF no-known-local-overlap and PNG unknown-custom-training-overlap results, quantities, statuses, resource/timing gaps, grader/source hashes and row-level files: [FINAL_EVALUATION.md](docs/FINAL_EVALUATION.md). This is not deployedHybrid accuracy or a representative fullfinal score. Text/listN=0,N/A. No tuning afterfreeze.
 
 Reproduce saved-result comparison: `.venv/bin/python -m campaign.report_development`. Scores/row-level records: `results/overnight-20261115/candidate-production-policy/{score.json,rows.jsonl}`; original best estimate: `candidate-pdf-recovery-v3/`; contract: `baseline/contract.json`; source hashes and run paths: `development-report/summary.json`. Browser artifacts remain outside Git under `floorhawk-modal/verification/overnight-candidate/`.
 

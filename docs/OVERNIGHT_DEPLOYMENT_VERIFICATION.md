@@ -37,6 +37,8 @@ Public cumulative compute guard remains7USD; after one verification job its cons
 
 Focused discovery79passed; approvedexisting suite93passed;30overlap means142unique tests, not172. Earlier combined137 run had one sandbox socket creation error; the approved rerun covered that assertion successfully. A separate initial command-line invocation had an argument error and is not a passed test run. Original split/reference/baseline/model hashes remain unchanged. Source history scan536blobs found no credential pattern.
 
+Historical66tests/fiveerrors was a genuine failed run: an uncommitted Controls default referenced `s` before assignment. It was fixed before a later66-pass run; [the presenter record](PRESENTER_DEPLOYMENT.md) preserves the cause and subsequent70-test log. The current79/93successful suites are new evidence, not retroactive claims that the failed run passed.
+
 CPU fallback development smoke used a real recording PNG:2sinks, observedCPUtensor forward,6.62s combined first loading/inference. Its raw model_loading_seconds0 is not a separately measured loading duration; report that substageN/A. No final answers were opened for this smoke.
 
 Private raw browser/job/crop/export evidence: `../floorhawk-modal/verification/overnight-{presenter,judges,public}/`. Version/model metadata: [release manifest](release-manifest.json). Operations/rollback: [event operations](EVENT_OPERATIONS.md).

@@ -2,7 +2,7 @@
 
 Team Academic Menaces · STOA — Make Blueprints Talk · Junction2026
 
-Last checkpoint: 2026-11-15T03:23:53.003001+02:00
+Initial checkpoint: 2026-11-15T03:23:53.003001+02:00 (append-only updates below)
 
 Preflight passed: GitHub/private floorhawk repo created, Modal workspace sm-hariprasanth, existing T4, assets and real Gemini generation. Local CUDA blocked by session, host telemetry stale; isolated scale-to-zero T4 observations complete361sources. Presenter efc01a8/public a44e94f remain unchanged during optimization.
 
@@ -35,3 +35,12 @@ Three endpoint browser checks passed; source5827eab onallroles. Privatefloorhawk
 
 
 2026-11-15T06:49:23.379965+02:00: resource-only8fce908 promoted/normal-login checked on all3URLs; frozen inference5827unchanged;canary18/18,final roles1/1each;79focused/142unique tests;no new provider calls. FinalCPU3308/6876at06:47,scoring not inspected.
+
+
+2026-11-15T06:57:54.057021+02:00: three-role deployment and private submission22706a1/source4a632e4 delivered before07:00. Resource revision8fce908, inference5827eab. Presenter/judges warm, publicmin0. No active staging/extraction GPU runners; finalLocalCPU3842/6876at06:57, no final score inspection. Budget400shared responses unchanged; publiccompute5.75/7USD.
+
+
+07:04Helsinki: telemetry-only handle returned143; its metadata was markedstopped and the recorder resumed. A real gap06:27–07:04 remains in saved telemetry. The distinct LocalCPU supervisor/process/admission remained active; fresh samples RAMabout50%,CPUabout12%. No resource threshold was relaxed. Final4242/6876at07:04; no score inspection.
+
+
+2026-11-15T07:29:04.583972+02:00: finalLocalCPUterminal, 5602/6876recorded, 273/354sources. Frozen separategradingcomplete; correctall4214/6876,recordedsubset4214/5602. No tuning/providercalls. Exact strata,partialcoverage/telemetrygap:FINAL_EVALUATION.md. Eventservicesretained.

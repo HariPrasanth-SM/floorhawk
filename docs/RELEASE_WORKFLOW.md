@@ -4,6 +4,9 @@ The current actual workflow is [event operations](EVENT_OPERATIONS.md), with [ve
 
 Backend-only snapshot export preserved frontend SHA256a111edce02bc2803837609cf4b15bfc19d3ee1e9ff2f003826aa2a2c49aafae8 and endpoint URLs across actual staging/promotions. `assets.json` is included and28remote assets verified. Rollback construction was imported successfully from the original presenter snapshot; no serving rollback was unnecessarily performed after successful promotion.
 
+
+The private submission has its own sanitized Git history. Canonical deployment hashes such as8fce908 are provenance identifiers and are not necessarily Git objects in that new repository. `SOURCE_RELEASE.json` records canonical revision and per-file hashes. For a fresh submission clone, export its explicit own commit (`git rev-parse HEAD`) after restoring external manifests/assets; verify frontend/model/config hashes against the recorded release. For byte-identical rollback use the retained canonical repository and pinned operational snapshot. Do not pretend the new snapshot contains the canonical historical commits or duplicate an active backend fork.
+
 ## Historical deployment record
 
 # Pinned release workflow

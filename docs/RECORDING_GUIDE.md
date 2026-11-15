@@ -1,4 +1,4 @@
-# Recording guide — verified frozen5827eab
+# Recording guide — deployment8fce908 / frozen inference5827eab
 
 Use the protected presenter: https://sm-hariprasanth--presenter.us-east.modal.run . It and the judges worker remain warm/billable. Code file: `../floorhawk-modal/.secrets/presenter-access-code` from canonical source; do not include it in a recording.
 
@@ -32,3 +32,6 @@ All values above are from fresh accepted requests on the promoted presenter, not
 5. Export an annotated PNG/PDF image. Edit the question to show the exact reference clears; no inference starts until Ask.
 
 Warm/status/off/rollback commands: [event operations](EVENT_OPERATIONS.md). Detailed checks: [deployment verification](OVERNIGHT_DEPLOYMENT_VERIFICATION.md). If a source has no localized evidence, show that limitation rather than inventing boxes. Rendering does not establish the correctness of an IFC property/count query by itself.
+
+
+The resource-only8fce908canary repeated all18suggestions with the same answers; [latest complete table](GALLERY_OVERNIGHT_VERIFICATION.md). The table above records the earlier promoted presenter5827measurements, not a promise of current latency. After resource promotion, a fresh presenter door question again returned4with4boxes in9.40s. Frontend/model/configuration/inference hashes are unchanged.

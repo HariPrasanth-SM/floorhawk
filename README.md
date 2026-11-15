@@ -91,7 +91,7 @@ Fresh normal-login verification: all18curated suggestions plus manual PNG/PDF/IF
 
 Selected staging timing: first cold browser query27.67s included an injected polling failure;17warm requests median5.26s/range4.64–7.55s. Final resource-bound spot checks: presenter9.40s,judges14.19s,public32.99s(cold+polling fault). No fixed latency/p95 promise or speed claim from cached retrieval. Raw timing and device evidence: [deployment verification](docs/OVERNIGHT_DEPLOYMENT_VERIFICATION.md).
 
-Remaining final candidates:6,876questions,354sources.1,298PDFquestions have no known local training/development overlap;5,578CubiCasa questions have unknown custom-training membership. External pretrained overlap remains possible. Frozen LocalCPU evaluation is separate from serving Hybrid and may have partial coverage. No final-reference feedback is used for tuning.
+Remaining final candidates:6,876questions,354sources.1,298PDFquestions have no known local training/development overlap;5,578CubiCasa questions have unknown custom-training membership. External pretrained overlap remains possible. Frozen LocalCPU evaluation recorded5602/6876; correctall4214/6876(61.29%), recordedsubset4214/5602(75.22%). Coverage is partial and source-order biased; this is not servingHybrid accuracy. [Final strata and overlap limitations](docs/FINAL_EVALUATION.md). No final-reference feedback was used for tuning.
 
 ## Operator quick start
 
