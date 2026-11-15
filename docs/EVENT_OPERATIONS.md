@@ -51,11 +51,11 @@ Warm commands read the role policy and preserve maximums1/5/5; they never reset 
 Select each role explicitly; the selected operational role persists outsideGit:
 
 ```bash
-.venv/bin/python -m campaign.operator --role public --release ../floorhawk-modal/releases/event-capacity-path --enable-live
+.venv/bin/python -m campaign.operator --role public --release ../floorhawk-modal/releases/public-anonymous-fixed --enable-live
 .venv/bin/modal deploy deploy/modal/app.py
 ```
 
-Use presenter/judges as appropriate. Subsequent deployments read the same role-capacity policy. Immutable source snapshots/weights remain intact. For rollback use `releases/event-readiness-lock` (public9cd9301) and `releases/overnight-resource-bounds` (presenter/judges8fce908). Those earlier releases restore their former constraints and warming. Import their OWN pinned deployment entrypoint, not current helpers against an old image. For public rollback:
+Presenter/judges retain the protected event-capacity-path snapshot; do not redeploy them for this public access correction. Subsequent deployments read the same role-capacity policy. Immutable source snapshots/weights remain intact. For rollback use `releases/event-readiness-lock` (public9cd9301) and `releases/overnight-resource-bounds` (presenter/judges8fce908). Those earlier releases restore their former constraints and warming. Import their OWN pinned deployment entrypoint, not current helpers against an old image. For public rollback:
 
 ```bash
 # From canonical proofplan/ select the old role/snapshot first:
